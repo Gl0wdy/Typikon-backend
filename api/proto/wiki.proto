@@ -1,0 +1,172 @@
+syntax = "proto3";
+
+package wiki;
+
+option go_package = "github.com/Gl0wdy/Typikon-backend/microservices/wiki-service/internal/transport/grpc;wiki_grpc";
+
+// ==========================================
+// Categories service
+service CategoriesService {
+    rpc CreateCategory (CreateCategoryRequest) returns (CategoryResponse);
+    rpc GetCategory (GetCategoryRequest) returns (CategoryResponse);
+    rpc UpdateCategory (UpdateCategoryRequest) returns (CategoryResponse);
+    rpc DeleteCategory (DeleteCategoryRequest) returns (DeleteCategoryResponse);
+    rpc GetCategories (GetCategoriesRequest) returns (GetCategoriesResponse);
+}
+
+message CreateCategoryRequest {
+    string title = 1;
+}
+
+message CategoryResponse {
+    string id = 1;
+    string title = 2;
+}
+
+message GetCategoryRequest {
+    string id = 1;
+}
+
+message DeleteCategoryRequest {
+    string id = 1;
+}
+
+message DeleteCategoryResponse {
+    bool success = 1;
+}
+
+message GetCategoriesRequest {
+    int32 limit = 1;
+    int32 offset = 2;
+}
+
+message UpdateCategoryRequest {
+    int32 id = 1;
+    string new_title = 2;
+}
+
+message GetCategoriesResponse {
+    repeated CategoryResponse categories = 1;
+    int32 total_count = 2;
+}
+
+
+// ==========================================
+// Articles service
+service ArticlesService {
+    rpc CreateArticle (CreateArticleRequest) returns (ArticleResponse);
+    rpc GetArticle (GetArticleRequest) returns (ArticleResponse);
+    rpc UpdateArticle (UpdateArticleRequest) returns (ArticleResponse);
+    rpc DeleteArticle (DeleteArticleRequest) returns (DeleteArticleResponse);
+    rpc GetArticles (GetArticlesRequest) returns (GetArticlesResponse);
+}
+
+message CreateArticleRequest {
+    string title = 1;
+    string content = 2;
+    string category_id = 3;
+    string user_id = 4; 
+}
+
+message ArticleResponse {
+    string id = 1;
+    string title = 2;
+    string content = 3;
+    string category_id = 4;
+    string user_id = 5;
+    string created_at = 6;
+}
+
+message GetArticleRequest {
+    string id = 1;
+}
+
+message UpdateArticleRequest {
+    string id = 1;
+    string title = 2;
+    string content = 3;
+    string category_id = 4;
+}
+
+message DeleteArticleRequest {
+    string id = 1;
+}
+
+message DeleteArticleResponse {
+    bool success = 1;
+}
+
+message GetArticlesRequest {
+    int32 limit = 1;
+    int32 offset = 2;
+    string category_id = 3; 
+}
+
+message GetArticlesResponse {
+    repeated ArticleResponse articles = 1;
+    int32 total_count = 2;
+}
+
+
+// ==========================================
+// Comments service
+service CommentsService {
+    rpc CreateComment (CreateCommentRequest) returns (CommentResponse);
+    rpc DeleteComment (DeleteCommentRequest) returns (DeleteCommentResponse);
+    rpc GetCommentsByArticle (GetCommentsRequest) returns (GetCommentsResponse);
+    rpc VoteComment (VoteCommentRequest) returns (VoteCommentResponse);
+}
+
+enum VoteType {
+    VOTE_UNKNOWN = 0;
+    LIKE = 1;
+    DISLIKE = 2;
+    UNVOTE = 3;
+}
+
+message CreateCommentRequest {
+    string article_id = 1;
+    string content = 2;
+    string user_id = 3;
+}
+
+message CommentResponse {
+    string id = 1;
+    string article_id = 2;
+    string content = 3;
+    string user_id = 4;
+    int32 likes_count = 5;
+    int32 dislikes_count = 6;
+    string created_at = 7;
+}
+
+message DeleteCommentRequest {
+    string id = 1;
+    string user_id = 2;
+}
+
+message DeleteCommentResponse {
+    bool success = 1;
+}
+
+message GetCommentsRequest {
+    string article_id = 1;
+    int32 limit = 2;
+    int32 offset = 3;
+}
+
+message GetCommentsResponse {
+    repeated CommentResponse comments = 1;
+}
+
+message VoteCommentRequest {
+    string comment_id = 1;
+    string user_id = 2;
+    VoteType vote_type = 3;
+}
+
+message VoteCommentResponse {
+    bool success = 1;
+    int32 likes_count = 2;
+    int32 dislikes_count = 3;
+}
