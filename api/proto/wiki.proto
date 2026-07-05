@@ -39,7 +39,7 @@ message ListCategoriesRequest {
 }
 
 message UpdateCategoryRequest {
-    int32 id = 1;
+    string id = 1;
     string new_title = 2;
 }
 
