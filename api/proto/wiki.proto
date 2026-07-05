@@ -1,7 +1,5 @@
 syntax = "proto3";
-
 package wiki;
-
 option go_package = "github.com/Gl0wdy/Typikon-backend/microservices/wiki-service/internal/transport/grpc;wiki_grpc";
 
 // ==========================================
@@ -11,7 +9,7 @@ service CategoriesService {
     rpc GetCategory (GetCategoryRequest) returns (CategoryResponse);
     rpc UpdateCategory (UpdateCategoryRequest) returns (CategoryResponse);
     rpc DeleteCategory (DeleteCategoryRequest) returns (DeleteCategoryResponse);
-    rpc GetCategories (GetCategoriesRequest) returns (GetCategoriesResponse);
+    rpc ListCategories (ListCategoriesRequest) returns (ListCategoriesResponse);
 }
 
 message CreateCategoryRequest {
@@ -35,7 +33,7 @@ message DeleteCategoryResponse {
     bool success = 1;
 }
 
-message GetCategoriesRequest {
+message ListCategoriesRequest {
     int32 limit = 1;
     int32 offset = 2;
 }
@@ -45,11 +43,10 @@ message UpdateCategoryRequest {
     string new_title = 2;
 }
 
-message GetCategoriesResponse {
+message ListCategoriesResponse {
     repeated CategoryResponse categories = 1;
     int32 total_count = 2;
 }
-
 
 // ==========================================
 // Articles service
@@ -58,7 +55,7 @@ service ArticlesService {
     rpc GetArticle (GetArticleRequest) returns (ArticleResponse);
     rpc UpdateArticle (UpdateArticleRequest) returns (ArticleResponse);
     rpc DeleteArticle (DeleteArticleRequest) returns (DeleteArticleResponse);
-    rpc GetArticles (GetArticlesRequest) returns (GetArticlesResponse);
+    rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse);
 }
 
 message CreateArticleRequest {
@@ -96,17 +93,16 @@ message DeleteArticleResponse {
     bool success = 1;
 }
 
-message GetArticlesRequest {
+message ListArticlesRequest {
     int32 limit = 1;
     int32 offset = 2;
     string category_id = 3; 
 }
 
-message GetArticlesResponse {
+message ListArticlesResponse {
     repeated ArticleResponse articles = 1;
     int32 total_count = 2;
 }
-
 
 // ==========================================
 // Comments service

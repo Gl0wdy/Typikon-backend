@@ -23,7 +23,7 @@ const (
 	CategoriesService_GetCategory_FullMethodName    = "/wiki.CategoriesService/GetCategory"
 	CategoriesService_UpdateCategory_FullMethodName = "/wiki.CategoriesService/UpdateCategory"
 	CategoriesService_DeleteCategory_FullMethodName = "/wiki.CategoriesService/DeleteCategory"
-	CategoriesService_GetCategories_FullMethodName  = "/wiki.CategoriesService/GetCategories"
+	CategoriesService_ListCategories_FullMethodName = "/wiki.CategoriesService/ListCategories"
 )
 
 // CategoriesServiceClient is the client API for CategoriesService service.
@@ -37,7 +37,7 @@ type CategoriesServiceClient interface {
 	GetCategory(ctx context.Context, in *GetCategoryRequest, opts ...grpc.CallOption) (*CategoryResponse, error)
 	UpdateCategory(ctx context.Context, in *UpdateCategoryRequest, opts ...grpc.CallOption) (*CategoryResponse, error)
 	DeleteCategory(ctx context.Context, in *DeleteCategoryRequest, opts ...grpc.CallOption) (*DeleteCategoryResponse, error)
-	GetCategories(ctx context.Context, in *GetCategoriesRequest, opts ...grpc.CallOption) (*GetCategoriesResponse, error)
+	ListCategories(ctx context.Context, in *ListCategoriesRequest, opts ...grpc.CallOption) (*ListCategoriesResponse, error)
 }
 
 type categoriesServiceClient struct {
@@ -88,10 +88,10 @@ func (c *categoriesServiceClient) DeleteCategory(ctx context.Context, in *Delete
 	return out, nil
 }
 
-func (c *categoriesServiceClient) GetCategories(ctx context.Context, in *GetCategoriesRequest, opts ...grpc.CallOption) (*GetCategoriesResponse, error) {
+func (c *categoriesServiceClient) ListCategories(ctx context.Context, in *ListCategoriesRequest, opts ...grpc.CallOption) (*ListCategoriesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCategoriesResponse)
-	err := c.cc.Invoke(ctx, CategoriesService_GetCategories_FullMethodName, in, out, cOpts...)
+	out := new(ListCategoriesResponse)
+	err := c.cc.Invoke(ctx, CategoriesService_ListCategories_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -109,7 +109,7 @@ type CategoriesServiceServer interface {
 	GetCategory(context.Context, *GetCategoryRequest) (*CategoryResponse, error)
 	UpdateCategory(context.Context, *UpdateCategoryRequest) (*CategoryResponse, error)
 	DeleteCategory(context.Context, *DeleteCategoryRequest) (*DeleteCategoryResponse, error)
-	GetCategories(context.Context, *GetCategoriesRequest) (*GetCategoriesResponse, error)
+	ListCategories(context.Context, *ListCategoriesRequest) (*ListCategoriesResponse, error)
 	mustEmbedUnimplementedCategoriesServiceServer()
 }
 
@@ -132,8 +132,8 @@ func (UnimplementedCategoriesServiceServer) UpdateCategory(context.Context, *Upd
 func (UnimplementedCategoriesServiceServer) DeleteCategory(context.Context, *DeleteCategoryRequest) (*DeleteCategoryResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteCategory not implemented")
 }
-func (UnimplementedCategoriesServiceServer) GetCategories(context.Context, *GetCategoriesRequest) (*GetCategoriesResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetCategories not implemented")
+func (UnimplementedCategoriesServiceServer) ListCategories(context.Context, *ListCategoriesRequest) (*ListCategoriesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListCategories not implemented")
 }
 func (UnimplementedCategoriesServiceServer) mustEmbedUnimplementedCategoriesServiceServer() {}
 func (UnimplementedCategoriesServiceServer) testEmbeddedByValue()                           {}
@@ -228,20 +228,20 @@ func _CategoriesService_DeleteCategory_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CategoriesService_GetCategories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCategoriesRequest)
+func _CategoriesService_ListCategories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCategoriesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CategoriesServiceServer).GetCategories(ctx, in)
+		return srv.(CategoriesServiceServer).ListCategories(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: CategoriesService_GetCategories_FullMethodName,
+		FullMethod: CategoriesService_ListCategories_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CategoriesServiceServer).GetCategories(ctx, req.(*GetCategoriesRequest))
+		return srv.(CategoriesServiceServer).ListCategories(ctx, req.(*ListCategoriesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -270,8 +270,8 @@ var CategoriesService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CategoriesService_DeleteCategory_Handler,
 		},
 		{
-			MethodName: "GetCategories",
-			Handler:    _CategoriesService_GetCategories_Handler,
+			MethodName: "ListCategories",
+			Handler:    _CategoriesService_ListCategories_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -283,7 +283,7 @@ const (
 	ArticlesService_GetArticle_FullMethodName    = "/wiki.ArticlesService/GetArticle"
 	ArticlesService_UpdateArticle_FullMethodName = "/wiki.ArticlesService/UpdateArticle"
 	ArticlesService_DeleteArticle_FullMethodName = "/wiki.ArticlesService/DeleteArticle"
-	ArticlesService_GetArticles_FullMethodName   = "/wiki.ArticlesService/GetArticles"
+	ArticlesService_ListArticles_FullMethodName  = "/wiki.ArticlesService/ListArticles"
 )
 
 // ArticlesServiceClient is the client API for ArticlesService service.
@@ -297,7 +297,7 @@ type ArticlesServiceClient interface {
 	GetArticle(ctx context.Context, in *GetArticleRequest, opts ...grpc.CallOption) (*ArticleResponse, error)
 	UpdateArticle(ctx context.Context, in *UpdateArticleRequest, opts ...grpc.CallOption) (*ArticleResponse, error)
 	DeleteArticle(ctx context.Context, in *DeleteArticleRequest, opts ...grpc.CallOption) (*DeleteArticleResponse, error)
-	GetArticles(ctx context.Context, in *GetArticlesRequest, opts ...grpc.CallOption) (*GetArticlesResponse, error)
+	ListArticles(ctx context.Context, in *ListArticlesRequest, opts ...grpc.CallOption) (*ListArticlesResponse, error)
 }
 
 type articlesServiceClient struct {
@@ -348,10 +348,10 @@ func (c *articlesServiceClient) DeleteArticle(ctx context.Context, in *DeleteArt
 	return out, nil
 }
 
-func (c *articlesServiceClient) GetArticles(ctx context.Context, in *GetArticlesRequest, opts ...grpc.CallOption) (*GetArticlesResponse, error) {
+func (c *articlesServiceClient) ListArticles(ctx context.Context, in *ListArticlesRequest, opts ...grpc.CallOption) (*ListArticlesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetArticlesResponse)
-	err := c.cc.Invoke(ctx, ArticlesService_GetArticles_FullMethodName, in, out, cOpts...)
+	out := new(ListArticlesResponse)
+	err := c.cc.Invoke(ctx, ArticlesService_ListArticles_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -369,7 +369,7 @@ type ArticlesServiceServer interface {
 	GetArticle(context.Context, *GetArticleRequest) (*ArticleResponse, error)
 	UpdateArticle(context.Context, *UpdateArticleRequest) (*ArticleResponse, error)
 	DeleteArticle(context.Context, *DeleteArticleRequest) (*DeleteArticleResponse, error)
-	GetArticles(context.Context, *GetArticlesRequest) (*GetArticlesResponse, error)
+	ListArticles(context.Context, *ListArticlesRequest) (*ListArticlesResponse, error)
 	mustEmbedUnimplementedArticlesServiceServer()
 }
 
@@ -392,8 +392,8 @@ func (UnimplementedArticlesServiceServer) UpdateArticle(context.Context, *Update
 func (UnimplementedArticlesServiceServer) DeleteArticle(context.Context, *DeleteArticleRequest) (*DeleteArticleResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteArticle not implemented")
 }
-func (UnimplementedArticlesServiceServer) GetArticles(context.Context, *GetArticlesRequest) (*GetArticlesResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetArticles not implemented")
+func (UnimplementedArticlesServiceServer) ListArticles(context.Context, *ListArticlesRequest) (*ListArticlesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListArticles not implemented")
 }
 func (UnimplementedArticlesServiceServer) mustEmbedUnimplementedArticlesServiceServer() {}
 func (UnimplementedArticlesServiceServer) testEmbeddedByValue()                         {}
@@ -488,20 +488,20 @@ func _ArticlesService_DeleteArticle_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArticlesService_GetArticles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetArticlesRequest)
+func _ArticlesService_ListArticles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListArticlesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArticlesServiceServer).GetArticles(ctx, in)
+		return srv.(ArticlesServiceServer).ListArticles(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArticlesService_GetArticles_FullMethodName,
+		FullMethod: ArticlesService_ListArticles_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArticlesServiceServer).GetArticles(ctx, req.(*GetArticlesRequest))
+		return srv.(ArticlesServiceServer).ListArticles(ctx, req.(*ListArticlesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -530,8 +530,8 @@ var ArticlesService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArticlesService_DeleteArticle_Handler,
 		},
 		{
-			MethodName: "GetArticles",
-			Handler:    _ArticlesService_GetArticles_Handler,
+			MethodName: "ListArticles",
+			Handler:    _ArticlesService_ListArticles_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

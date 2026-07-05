@@ -301,7 +301,7 @@ func (x *DeleteCategoryResponse) GetSuccess() bool {
 	return false
 }
 
-type GetCategoriesRequest struct {
+type ListCategoriesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
@@ -309,20 +309,20 @@ type GetCategoriesRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetCategoriesRequest) Reset() {
-	*x = GetCategoriesRequest{}
+func (x *ListCategoriesRequest) Reset() {
+	*x = ListCategoriesRequest{}
 	mi := &file_wiki_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetCategoriesRequest) String() string {
+func (x *ListCategoriesRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetCategoriesRequest) ProtoMessage() {}
+func (*ListCategoriesRequest) ProtoMessage() {}
 
-func (x *GetCategoriesRequest) ProtoReflect() protoreflect.Message {
+func (x *ListCategoriesRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_wiki_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -334,19 +334,19 @@ func (x *GetCategoriesRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetCategoriesRequest.ProtoReflect.Descriptor instead.
-func (*GetCategoriesRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListCategoriesRequest.ProtoReflect.Descriptor instead.
+func (*ListCategoriesRequest) Descriptor() ([]byte, []int) {
 	return file_wiki_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetCategoriesRequest) GetLimit() int32 {
+func (x *ListCategoriesRequest) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
 	return 0
 }
 
-func (x *GetCategoriesRequest) GetOffset() int32 {
+func (x *ListCategoriesRequest) GetOffset() int32 {
 	if x != nil {
 		return x.Offset
 	}
@@ -405,7 +405,7 @@ func (x *UpdateCategoryRequest) GetNewTitle() string {
 	return ""
 }
 
-type GetCategoriesResponse struct {
+type ListCategoriesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Categories    []*CategoryResponse    `protobuf:"bytes,1,rep,name=categories,proto3" json:"categories,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
@@ -413,20 +413,20 @@ type GetCategoriesResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetCategoriesResponse) Reset() {
-	*x = GetCategoriesResponse{}
+func (x *ListCategoriesResponse) Reset() {
+	*x = ListCategoriesResponse{}
 	mi := &file_wiki_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetCategoriesResponse) String() string {
+func (x *ListCategoriesResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetCategoriesResponse) ProtoMessage() {}
+func (*ListCategoriesResponse) ProtoMessage() {}
 
-func (x *GetCategoriesResponse) ProtoReflect() protoreflect.Message {
+func (x *ListCategoriesResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_wiki_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -438,19 +438,19 @@ func (x *GetCategoriesResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetCategoriesResponse.ProtoReflect.Descriptor instead.
-func (*GetCategoriesResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListCategoriesResponse.ProtoReflect.Descriptor instead.
+func (*ListCategoriesResponse) Descriptor() ([]byte, []int) {
 	return file_wiki_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *GetCategoriesResponse) GetCategories() []*CategoryResponse {
+func (x *ListCategoriesResponse) GetCategories() []*CategoryResponse {
 	if x != nil {
 		return x.Categories
 	}
 	return nil
 }
 
-func (x *GetCategoriesResponse) GetTotalCount() int32 {
+func (x *ListCategoriesResponse) GetTotalCount() int32 {
 	if x != nil {
 		return x.TotalCount
 	}
@@ -809,7 +809,7 @@ func (x *DeleteArticleResponse) GetSuccess() bool {
 	return false
 }
 
-type GetArticlesRequest struct {
+type ListArticlesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
@@ -818,20 +818,20 @@ type GetArticlesRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetArticlesRequest) Reset() {
-	*x = GetArticlesRequest{}
+func (x *ListArticlesRequest) Reset() {
+	*x = ListArticlesRequest{}
 	mi := &file_wiki_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetArticlesRequest) String() string {
+func (x *ListArticlesRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetArticlesRequest) ProtoMessage() {}
+func (*ListArticlesRequest) ProtoMessage() {}
 
-func (x *GetArticlesRequest) ProtoReflect() protoreflect.Message {
+func (x *ListArticlesRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_wiki_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -843,33 +843,33 @@ func (x *GetArticlesRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetArticlesRequest.ProtoReflect.Descriptor instead.
-func (*GetArticlesRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListArticlesRequest.ProtoReflect.Descriptor instead.
+func (*ListArticlesRequest) Descriptor() ([]byte, []int) {
 	return file_wiki_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *GetArticlesRequest) GetLimit() int32 {
+func (x *ListArticlesRequest) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
 	return 0
 }
 
-func (x *GetArticlesRequest) GetOffset() int32 {
+func (x *ListArticlesRequest) GetOffset() int32 {
 	if x != nil {
 		return x.Offset
 	}
 	return 0
 }
 
-func (x *GetArticlesRequest) GetCategoryId() string {
+func (x *ListArticlesRequest) GetCategoryId() string {
 	if x != nil {
 		return x.CategoryId
 	}
 	return ""
 }
 
-type GetArticlesResponse struct {
+type ListArticlesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Articles      []*ArticleResponse     `protobuf:"bytes,1,rep,name=articles,proto3" json:"articles,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
@@ -877,20 +877,20 @@ type GetArticlesResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetArticlesResponse) Reset() {
-	*x = GetArticlesResponse{}
+func (x *ListArticlesResponse) Reset() {
+	*x = ListArticlesResponse{}
 	mi := &file_wiki_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetArticlesResponse) String() string {
+func (x *ListArticlesResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetArticlesResponse) ProtoMessage() {}
+func (*ListArticlesResponse) ProtoMessage() {}
 
-func (x *GetArticlesResponse) ProtoReflect() protoreflect.Message {
+func (x *ListArticlesResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_wiki_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -902,19 +902,19 @@ func (x *GetArticlesResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetArticlesResponse.ProtoReflect.Descriptor instead.
-func (*GetArticlesResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListArticlesResponse.ProtoReflect.Descriptor instead.
+func (*ListArticlesResponse) Descriptor() ([]byte, []int) {
 	return file_wiki_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *GetArticlesResponse) GetArticles() []*ArticleResponse {
+func (x *ListArticlesResponse) GetArticles() []*ArticleResponse {
 	if x != nil {
 		return x.Articles
 	}
 	return nil
 }
 
-func (x *GetArticlesResponse) GetTotalCount() int32 {
+func (x *ListArticlesResponse) GetTotalCount() int32 {
 	if x != nil {
 		return x.TotalCount
 	}
@@ -1409,14 +1409,14 @@ const file_wiki_proto_rawDesc = "" +
 	"\x15DeleteCategoryRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"2\n" +
 	"\x16DeleteCategoryResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"D\n" +
-	"\x14GetCategoriesRequest\x12\x14\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"E\n" +
+	"\x15ListCategoriesRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\"D\n" +
 	"\x15UpdateCategoryRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x1b\n" +
-	"\tnew_title\x18\x02 \x01(\tR\bnewTitle\"p\n" +
-	"\x15GetCategoriesResponse\x126\n" +
+	"\tnew_title\x18\x02 \x01(\tR\bnewTitle\"q\n" +
+	"\x16ListCategoriesResponse\x126\n" +
 	"\n" +
 	"categories\x18\x01 \x03(\v2\x16.wiki.CategoryResponseR\n" +
 	"categories\x12\x1f\n" +
@@ -1448,13 +1448,13 @@ const file_wiki_proto_rawDesc = "" +
 	"\x14DeleteArticleRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"1\n" +
 	"\x15DeleteArticleResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"c\n" +
-	"\x12GetArticlesRequest\x12\x14\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"d\n" +
+	"\x13ListArticlesRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\x12\x1f\n" +
 	"\vcategory_id\x18\x03 \x01(\tR\n" +
-	"categoryId\"i\n" +
-	"\x13GetArticlesResponse\x121\n" +
+	"categoryId\"j\n" +
+	"\x14ListArticlesResponse\x121\n" +
 	"\barticles\x18\x01 \x03(\v2\x15.wiki.ArticleResponseR\barticles\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\"h\n" +
@@ -1501,20 +1501,20 @@ const file_wiki_proto_rawDesc = "" +
 	"\x04LIKE\x10\x01\x12\v\n" +
 	"\aDISLIKE\x10\x02\x12\n" +
 	"\n" +
-	"\x06UNVOTE\x10\x032\xf9\x02\n" +
+	"\x06UNVOTE\x10\x032\xfc\x02\n" +
 	"\x11CategoriesService\x12E\n" +
 	"\x0eCreateCategory\x12\x1b.wiki.CreateCategoryRequest\x1a\x16.wiki.CategoryResponse\x12?\n" +
 	"\vGetCategory\x12\x18.wiki.GetCategoryRequest\x1a\x16.wiki.CategoryResponse\x12E\n" +
 	"\x0eUpdateCategory\x12\x1b.wiki.UpdateCategoryRequest\x1a\x16.wiki.CategoryResponse\x12K\n" +
-	"\x0eDeleteCategory\x12\x1b.wiki.DeleteCategoryRequest\x1a\x1c.wiki.DeleteCategoryResponse\x12H\n" +
-	"\rGetCategories\x12\x1a.wiki.GetCategoriesRequest\x1a\x1b.wiki.GetCategoriesResponse2\xe5\x02\n" +
+	"\x0eDeleteCategory\x12\x1b.wiki.DeleteCategoryRequest\x1a\x1c.wiki.DeleteCategoryResponse\x12K\n" +
+	"\x0eListCategories\x12\x1b.wiki.ListCategoriesRequest\x1a\x1c.wiki.ListCategoriesResponse2\xe8\x02\n" +
 	"\x0fArticlesService\x12B\n" +
 	"\rCreateArticle\x12\x1a.wiki.CreateArticleRequest\x1a\x15.wiki.ArticleResponse\x12<\n" +
 	"\n" +
 	"GetArticle\x12\x17.wiki.GetArticleRequest\x1a\x15.wiki.ArticleResponse\x12B\n" +
 	"\rUpdateArticle\x12\x1a.wiki.UpdateArticleRequest\x1a\x15.wiki.ArticleResponse\x12H\n" +
-	"\rDeleteArticle\x12\x1a.wiki.DeleteArticleRequest\x1a\x1b.wiki.DeleteArticleResponse\x12B\n" +
-	"\vGetArticles\x12\x18.wiki.GetArticlesRequest\x1a\x19.wiki.GetArticlesResponse2\xb0\x02\n" +
+	"\rDeleteArticle\x12\x1a.wiki.DeleteArticleRequest\x1a\x1b.wiki.DeleteArticleResponse\x12E\n" +
+	"\fListArticles\x12\x19.wiki.ListArticlesRequest\x1a\x1a.wiki.ListArticlesResponse2\xb0\x02\n" +
 	"\x0fCommentsService\x12B\n" +
 	"\rCreateComment\x12\x1a.wiki.CreateCommentRequest\x1a\x15.wiki.CommentResponse\x12H\n" +
 	"\rDeleteComment\x12\x1a.wiki.DeleteCommentRequest\x1a\x1b.wiki.DeleteCommentResponse\x12K\n" +
@@ -1542,17 +1542,17 @@ var file_wiki_proto_goTypes = []any{
 	(*GetCategoryRequest)(nil),     // 3: wiki.GetCategoryRequest
 	(*DeleteCategoryRequest)(nil),  // 4: wiki.DeleteCategoryRequest
 	(*DeleteCategoryResponse)(nil), // 5: wiki.DeleteCategoryResponse
-	(*GetCategoriesRequest)(nil),   // 6: wiki.GetCategoriesRequest
+	(*ListCategoriesRequest)(nil),  // 6: wiki.ListCategoriesRequest
 	(*UpdateCategoryRequest)(nil),  // 7: wiki.UpdateCategoryRequest
-	(*GetCategoriesResponse)(nil),  // 8: wiki.GetCategoriesResponse
+	(*ListCategoriesResponse)(nil), // 8: wiki.ListCategoriesResponse
 	(*CreateArticleRequest)(nil),   // 9: wiki.CreateArticleRequest
 	(*ArticleResponse)(nil),        // 10: wiki.ArticleResponse
 	(*GetArticleRequest)(nil),      // 11: wiki.GetArticleRequest
 	(*UpdateArticleRequest)(nil),   // 12: wiki.UpdateArticleRequest
 	(*DeleteArticleRequest)(nil),   // 13: wiki.DeleteArticleRequest
 	(*DeleteArticleResponse)(nil),  // 14: wiki.DeleteArticleResponse
-	(*GetArticlesRequest)(nil),     // 15: wiki.GetArticlesRequest
-	(*GetArticlesResponse)(nil),    // 16: wiki.GetArticlesResponse
+	(*ListArticlesRequest)(nil),    // 15: wiki.ListArticlesRequest
+	(*ListArticlesResponse)(nil),   // 16: wiki.ListArticlesResponse
 	(*CreateCommentRequest)(nil),   // 17: wiki.CreateCommentRequest
 	(*CommentResponse)(nil),        // 18: wiki.CommentResponse
 	(*DeleteCommentRequest)(nil),   // 19: wiki.DeleteCommentRequest
@@ -1563,20 +1563,20 @@ var file_wiki_proto_goTypes = []any{
 	(*VoteCommentResponse)(nil),    // 24: wiki.VoteCommentResponse
 }
 var file_wiki_proto_depIdxs = []int32{
-	2,  // 0: wiki.GetCategoriesResponse.categories:type_name -> wiki.CategoryResponse
-	10, // 1: wiki.GetArticlesResponse.articles:type_name -> wiki.ArticleResponse
+	2,  // 0: wiki.ListCategoriesResponse.categories:type_name -> wiki.CategoryResponse
+	10, // 1: wiki.ListArticlesResponse.articles:type_name -> wiki.ArticleResponse
 	18, // 2: wiki.GetCommentsResponse.comments:type_name -> wiki.CommentResponse
 	0,  // 3: wiki.VoteCommentRequest.vote_type:type_name -> wiki.VoteType
 	1,  // 4: wiki.CategoriesService.CreateCategory:input_type -> wiki.CreateCategoryRequest
 	3,  // 5: wiki.CategoriesService.GetCategory:input_type -> wiki.GetCategoryRequest
 	7,  // 6: wiki.CategoriesService.UpdateCategory:input_type -> wiki.UpdateCategoryRequest
 	4,  // 7: wiki.CategoriesService.DeleteCategory:input_type -> wiki.DeleteCategoryRequest
-	6,  // 8: wiki.CategoriesService.GetCategories:input_type -> wiki.GetCategoriesRequest
+	6,  // 8: wiki.CategoriesService.ListCategories:input_type -> wiki.ListCategoriesRequest
 	9,  // 9: wiki.ArticlesService.CreateArticle:input_type -> wiki.CreateArticleRequest
 	11, // 10: wiki.ArticlesService.GetArticle:input_type -> wiki.GetArticleRequest
 	12, // 11: wiki.ArticlesService.UpdateArticle:input_type -> wiki.UpdateArticleRequest
 	13, // 12: wiki.ArticlesService.DeleteArticle:input_type -> wiki.DeleteArticleRequest
-	15, // 13: wiki.ArticlesService.GetArticles:input_type -> wiki.GetArticlesRequest
+	15, // 13: wiki.ArticlesService.ListArticles:input_type -> wiki.ListArticlesRequest
 	17, // 14: wiki.CommentsService.CreateComment:input_type -> wiki.CreateCommentRequest
 	19, // 15: wiki.CommentsService.DeleteComment:input_type -> wiki.DeleteCommentRequest
 	21, // 16: wiki.CommentsService.GetCommentsByArticle:input_type -> wiki.GetCommentsRequest
@@ -1585,12 +1585,12 @@ var file_wiki_proto_depIdxs = []int32{
 	2,  // 19: wiki.CategoriesService.GetCategory:output_type -> wiki.CategoryResponse
 	2,  // 20: wiki.CategoriesService.UpdateCategory:output_type -> wiki.CategoryResponse
 	5,  // 21: wiki.CategoriesService.DeleteCategory:output_type -> wiki.DeleteCategoryResponse
-	8,  // 22: wiki.CategoriesService.GetCategories:output_type -> wiki.GetCategoriesResponse
+	8,  // 22: wiki.CategoriesService.ListCategories:output_type -> wiki.ListCategoriesResponse
 	10, // 23: wiki.ArticlesService.CreateArticle:output_type -> wiki.ArticleResponse
 	10, // 24: wiki.ArticlesService.GetArticle:output_type -> wiki.ArticleResponse
 	10, // 25: wiki.ArticlesService.UpdateArticle:output_type -> wiki.ArticleResponse
 	14, // 26: wiki.ArticlesService.DeleteArticle:output_type -> wiki.DeleteArticleResponse
-	16, // 27: wiki.ArticlesService.GetArticles:output_type -> wiki.GetArticlesResponse
+	16, // 27: wiki.ArticlesService.ListArticles:output_type -> wiki.ListArticlesResponse
 	18, // 28: wiki.CommentsService.CreateComment:output_type -> wiki.CommentResponse
 	20, // 29: wiki.CommentsService.DeleteComment:output_type -> wiki.DeleteCommentResponse
 	22, // 30: wiki.CommentsService.GetCommentsByArticle:output_type -> wiki.GetCommentsResponse
