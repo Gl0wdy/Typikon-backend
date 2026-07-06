@@ -20,6 +20,7 @@ var (
 	ErrInvalidTitle    = errors.New("invalid title: cannot be empty")
 	ErrTitleTooLong    = errors.New("invalid title: too long")
 	ErrArticleNotFound = errors.New("article not found")
+	CategoryNotFound   = errors.New("category not found")
 )
 
 func (a *Article) Validate() error {

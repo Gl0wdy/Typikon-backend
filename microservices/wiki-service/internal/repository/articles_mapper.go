@@ -1,4 +1,3 @@
-// internal/repository/mapper.go
 package repository
 
 import (
@@ -6,7 +5,7 @@ import (
 	"github.com/Gl0wdy/Typikon-backend/microservices/wiki-service/internal/repository/models"
 )
 
-func toModel(a *domain.Article) *models.ArticleModel {
+func toArticleModel(a *domain.Article) *models.ArticleModel {
 	return &models.ArticleModel{
 		ID:         a.ID,
 		Title:      a.Title,
@@ -18,7 +17,7 @@ func toModel(a *domain.Article) *models.ArticleModel {
 	}
 }
 
-func toDomain(m *models.ArticleModel) *domain.Article {
+func toArticleDomain(m *models.ArticleModel) *domain.Article {
 	return &domain.Article{
 		ID:         m.ID,
 		Title:      m.Title,

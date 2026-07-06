@@ -19,12 +19,12 @@ func NewPostgresArticleRepo(db *gorm.DB) *PostgresArticleRepo {
 }
 
 func (r *PostgresArticleRepo) Create(ctx context.Context, article *domain.Article) (*domain.Article, error) {
-	model := toModel(article)
+	model := toArticleModel(article)
 	if err := r.db.WithContext(ctx).Create(model).Error; err != nil {
 		return nil, err
 	}
 
-	return toDomain(model), nil
+	return toArticleDomain(model), nil
 }
 
 func (r *PostgresArticleRepo) GetByID(ctx context.Context, id string) (*domain.Article, error) {
@@ -36,11 +36,11 @@ func (r *PostgresArticleRepo) GetByID(ctx context.Context, id string) (*domain.A
 		return nil, err
 	}
 
-	return toDomain(&model), nil
+	return toArticleDomain(&model), nil
 }
 
 func (r *PostgresArticleRepo) Update(ctx context.Context, article *domain.Article) error {
-	model := toModel(article)
+	model := toArticleModel(article)
 
 	result := r.db.WithContext(ctx).Model(&models.ArticleModel{}).
 		Where("id = ?", article.ID).
@@ -78,7 +78,7 @@ func (r *PostgresArticleRepo) List(ctx context.Context, limit, offset int) ([]*d
 
 	articles := make([]*domain.Article, 0, len(dbModels))
 	for _, m := range dbModels {
-		articles = append(articles, toDomain(&m))
+		articles = append(articles, toArticleDomain(&m))
 	}
 	return articles, nil
 }

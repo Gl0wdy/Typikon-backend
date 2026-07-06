@@ -14,17 +14,26 @@ type ArticleUseCase interface {
 	List(ctx context.Context, limit, offset int) ([]*domain.Article, error)
 }
 
-type articleUseCase struct {
-	repo domain.ArticleRepository
+type CategoryChecker interface {
+	Exists(ctx context.Context, categoryID string) (bool, error)
 }
 
-func NewArticleUseCase(repo domain.ArticleRepository) ArticleUseCase {
-	return &articleUseCase{repo: repo}
+type articleUseCase struct {
+	repo            domain.ArticleRepository
+	categoryChecker CategoryChecker
+}
+
+func NewArticleUseCase(repo domain.ArticleRepository, categoryChecker CategoryChecker) ArticleUseCase {
+	return &articleUseCase{repo: repo, categoryChecker: categoryChecker}
 }
 
 func (u *articleUseCase) Create(ctx context.Context, article *domain.Article) (*domain.Article, error) {
 	if err := article.Validate(); err != nil {
 		return nil, err
+	}
+
+	if _, err := u.categoryChecker.Exists(ctx, article.CategoryID); err != nil {
+		return nil, domain.CategoryNotFound
 	}
 
 	createdArticle, err := u.repo.Create(ctx, article)
@@ -69,6 +78,8 @@ func (u *articleUseCase) Delete(ctx context.Context, id string) error {
 func (u *articleUseCase) List(ctx context.Context, limit, offset int) ([]*domain.Article, error) {
 	if limit <= 0 {
 		limit = 20
+	} else if limit > 100 {
+		limit = 100
 	}
 	return u.repo.List(ctx, limit, offset)
 }

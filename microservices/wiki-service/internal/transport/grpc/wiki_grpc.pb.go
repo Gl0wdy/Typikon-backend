@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.2
 // - protoc             v7.35.1
-// source: wiki.proto
+// source: api/proto/wiki.proto
 
 package wiki_grpc
 
@@ -275,7 +275,7 @@ var CategoriesService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "wiki.proto",
+	Metadata: "api/proto/wiki.proto",
 }
 
 const (
@@ -535,7 +535,7 @@ var ArticlesService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "wiki.proto",
+	Metadata: "api/proto/wiki.proto",
 }
 
 const (
@@ -757,5 +757,5 @@ var CommentsService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "wiki.proto",
+	Metadata: "api/proto/wiki.proto",
 }

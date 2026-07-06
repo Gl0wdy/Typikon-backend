@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v7.35.1
-// source: wiki.proto
+// source: api/proto/wiki.proto
 
 package wiki_grpc
 
@@ -57,11 +57,11 @@ func (x VoteType) String() string {
 }
 
 func (VoteType) Descriptor() protoreflect.EnumDescriptor {
-	return file_wiki_proto_enumTypes[0].Descriptor()
+	return file_api_proto_wiki_proto_enumTypes[0].Descriptor()
 }
 
 func (VoteType) Type() protoreflect.EnumType {
-	return &file_wiki_proto_enumTypes[0]
+	return &file_api_proto_wiki_proto_enumTypes[0]
 }
 
 func (x VoteType) Number() protoreflect.EnumNumber {
@@ -70,7 +70,7 @@ func (x VoteType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use VoteType.Descriptor instead.
 func (VoteType) EnumDescriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{0}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{0}
 }
 
 type CreateCategoryRequest struct {
@@ -82,7 +82,7 @@ type CreateCategoryRequest struct {
 
 func (x *CreateCategoryRequest) Reset() {
 	*x = CreateCategoryRequest{}
-	mi := &file_wiki_proto_msgTypes[0]
+	mi := &file_api_proto_wiki_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -94,7 +94,7 @@ func (x *CreateCategoryRequest) String() string {
 func (*CreateCategoryRequest) ProtoMessage() {}
 
 func (x *CreateCategoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[0]
+	mi := &file_api_proto_wiki_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -107,7 +107,7 @@ func (x *CreateCategoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCategoryRequest.ProtoReflect.Descriptor instead.
 func (*CreateCategoryRequest) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{0}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *CreateCategoryRequest) GetTitle() string {
@@ -127,7 +127,7 @@ type CategoryResponse struct {
 
 func (x *CategoryResponse) Reset() {
 	*x = CategoryResponse{}
-	mi := &file_wiki_proto_msgTypes[1]
+	mi := &file_api_proto_wiki_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -139,7 +139,7 @@ func (x *CategoryResponse) String() string {
 func (*CategoryResponse) ProtoMessage() {}
 
 func (x *CategoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[1]
+	mi := &file_api_proto_wiki_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -152,7 +152,7 @@ func (x *CategoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CategoryResponse.ProtoReflect.Descriptor instead.
 func (*CategoryResponse) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{1}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CategoryResponse) GetId() string {
@@ -178,7 +178,7 @@ type GetCategoryRequest struct {
 
 func (x *GetCategoryRequest) Reset() {
 	*x = GetCategoryRequest{}
-	mi := &file_wiki_proto_msgTypes[2]
+	mi := &file_api_proto_wiki_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -190,7 +190,7 @@ func (x *GetCategoryRequest) String() string {
 func (*GetCategoryRequest) ProtoMessage() {}
 
 func (x *GetCategoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[2]
+	mi := &file_api_proto_wiki_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -203,7 +203,7 @@ func (x *GetCategoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCategoryRequest.ProtoReflect.Descriptor instead.
 func (*GetCategoryRequest) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{2}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetCategoryRequest) GetId() string {
@@ -222,7 +222,7 @@ type DeleteCategoryRequest struct {
 
 func (x *DeleteCategoryRequest) Reset() {
 	*x = DeleteCategoryRequest{}
-	mi := &file_wiki_proto_msgTypes[3]
+	mi := &file_api_proto_wiki_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -234,7 +234,7 @@ func (x *DeleteCategoryRequest) String() string {
 func (*DeleteCategoryRequest) ProtoMessage() {}
 
 func (x *DeleteCategoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[3]
+	mi := &file_api_proto_wiki_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -247,7 +247,7 @@ func (x *DeleteCategoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCategoryRequest.ProtoReflect.Descriptor instead.
 func (*DeleteCategoryRequest) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{3}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *DeleteCategoryRequest) GetId() string {
@@ -266,7 +266,7 @@ type DeleteCategoryResponse struct {
 
 func (x *DeleteCategoryResponse) Reset() {
 	*x = DeleteCategoryResponse{}
-	mi := &file_wiki_proto_msgTypes[4]
+	mi := &file_api_proto_wiki_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -278,7 +278,7 @@ func (x *DeleteCategoryResponse) String() string {
 func (*DeleteCategoryResponse) ProtoMessage() {}
 
 func (x *DeleteCategoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[4]
+	mi := &file_api_proto_wiki_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -291,7 +291,7 @@ func (x *DeleteCategoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCategoryResponse.ProtoReflect.Descriptor instead.
 func (*DeleteCategoryResponse) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{4}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *DeleteCategoryResponse) GetSuccess() bool {
@@ -311,7 +311,7 @@ type ListCategoriesRequest struct {
 
 func (x *ListCategoriesRequest) Reset() {
 	*x = ListCategoriesRequest{}
-	mi := &file_wiki_proto_msgTypes[5]
+	mi := &file_api_proto_wiki_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -323,7 +323,7 @@ func (x *ListCategoriesRequest) String() string {
 func (*ListCategoriesRequest) ProtoMessage() {}
 
 func (x *ListCategoriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[5]
+	mi := &file_api_proto_wiki_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -336,7 +336,7 @@ func (x *ListCategoriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCategoriesRequest.ProtoReflect.Descriptor instead.
 func (*ListCategoriesRequest) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{5}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ListCategoriesRequest) GetLimit() int32 {
@@ -355,7 +355,7 @@ func (x *ListCategoriesRequest) GetOffset() int32 {
 
 type UpdateCategoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	NewTitle      string                 `protobuf:"bytes,2,opt,name=new_title,json=newTitle,proto3" json:"new_title,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -363,7 +363,7 @@ type UpdateCategoryRequest struct {
 
 func (x *UpdateCategoryRequest) Reset() {
 	*x = UpdateCategoryRequest{}
-	mi := &file_wiki_proto_msgTypes[6]
+	mi := &file_api_proto_wiki_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -375,7 +375,7 @@ func (x *UpdateCategoryRequest) String() string {
 func (*UpdateCategoryRequest) ProtoMessage() {}
 
 func (x *UpdateCategoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[6]
+	mi := &file_api_proto_wiki_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -388,14 +388,14 @@ func (x *UpdateCategoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCategoryRequest.ProtoReflect.Descriptor instead.
 func (*UpdateCategoryRequest) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{6}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *UpdateCategoryRequest) GetId() int32 {
+func (x *UpdateCategoryRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *UpdateCategoryRequest) GetNewTitle() string {
@@ -415,7 +415,7 @@ type ListCategoriesResponse struct {
 
 func (x *ListCategoriesResponse) Reset() {
 	*x = ListCategoriesResponse{}
-	mi := &file_wiki_proto_msgTypes[7]
+	mi := &file_api_proto_wiki_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -427,7 +427,7 @@ func (x *ListCategoriesResponse) String() string {
 func (*ListCategoriesResponse) ProtoMessage() {}
 
 func (x *ListCategoriesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[7]
+	mi := &file_api_proto_wiki_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -440,7 +440,7 @@ func (x *ListCategoriesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCategoriesResponse.ProtoReflect.Descriptor instead.
 func (*ListCategoriesResponse) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{7}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ListCategoriesResponse) GetCategories() []*CategoryResponse {
@@ -469,7 +469,7 @@ type CreateArticleRequest struct {
 
 func (x *CreateArticleRequest) Reset() {
 	*x = CreateArticleRequest{}
-	mi := &file_wiki_proto_msgTypes[8]
+	mi := &file_api_proto_wiki_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -481,7 +481,7 @@ func (x *CreateArticleRequest) String() string {
 func (*CreateArticleRequest) ProtoMessage() {}
 
 func (x *CreateArticleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[8]
+	mi := &file_api_proto_wiki_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -494,7 +494,7 @@ func (x *CreateArticleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateArticleRequest.ProtoReflect.Descriptor instead.
 func (*CreateArticleRequest) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{8}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CreateArticleRequest) GetTitle() string {
@@ -539,7 +539,7 @@ type ArticleResponse struct {
 
 func (x *ArticleResponse) Reset() {
 	*x = ArticleResponse{}
-	mi := &file_wiki_proto_msgTypes[9]
+	mi := &file_api_proto_wiki_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -551,7 +551,7 @@ func (x *ArticleResponse) String() string {
 func (*ArticleResponse) ProtoMessage() {}
 
 func (x *ArticleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[9]
+	mi := &file_api_proto_wiki_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -564,7 +564,7 @@ func (x *ArticleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ArticleResponse.ProtoReflect.Descriptor instead.
 func (*ArticleResponse) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{9}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ArticleResponse) GetId() string {
@@ -618,7 +618,7 @@ type GetArticleRequest struct {
 
 func (x *GetArticleRequest) Reset() {
 	*x = GetArticleRequest{}
-	mi := &file_wiki_proto_msgTypes[10]
+	mi := &file_api_proto_wiki_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -630,7 +630,7 @@ func (x *GetArticleRequest) String() string {
 func (*GetArticleRequest) ProtoMessage() {}
 
 func (x *GetArticleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[10]
+	mi := &file_api_proto_wiki_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -643,7 +643,7 @@ func (x *GetArticleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetArticleRequest.ProtoReflect.Descriptor instead.
 func (*GetArticleRequest) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{10}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetArticleRequest) GetId() string {
@@ -665,7 +665,7 @@ type UpdateArticleRequest struct {
 
 func (x *UpdateArticleRequest) Reset() {
 	*x = UpdateArticleRequest{}
-	mi := &file_wiki_proto_msgTypes[11]
+	mi := &file_api_proto_wiki_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -677,7 +677,7 @@ func (x *UpdateArticleRequest) String() string {
 func (*UpdateArticleRequest) ProtoMessage() {}
 
 func (x *UpdateArticleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[11]
+	mi := &file_api_proto_wiki_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -690,7 +690,7 @@ func (x *UpdateArticleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateArticleRequest.ProtoReflect.Descriptor instead.
 func (*UpdateArticleRequest) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{11}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *UpdateArticleRequest) GetId() string {
@@ -730,7 +730,7 @@ type DeleteArticleRequest struct {
 
 func (x *DeleteArticleRequest) Reset() {
 	*x = DeleteArticleRequest{}
-	mi := &file_wiki_proto_msgTypes[12]
+	mi := &file_api_proto_wiki_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -742,7 +742,7 @@ func (x *DeleteArticleRequest) String() string {
 func (*DeleteArticleRequest) ProtoMessage() {}
 
 func (x *DeleteArticleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[12]
+	mi := &file_api_proto_wiki_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -755,7 +755,7 @@ func (x *DeleteArticleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteArticleRequest.ProtoReflect.Descriptor instead.
 func (*DeleteArticleRequest) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{12}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *DeleteArticleRequest) GetId() string {
@@ -774,7 +774,7 @@ type DeleteArticleResponse struct {
 
 func (x *DeleteArticleResponse) Reset() {
 	*x = DeleteArticleResponse{}
-	mi := &file_wiki_proto_msgTypes[13]
+	mi := &file_api_proto_wiki_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -786,7 +786,7 @@ func (x *DeleteArticleResponse) String() string {
 func (*DeleteArticleResponse) ProtoMessage() {}
 
 func (x *DeleteArticleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[13]
+	mi := &file_api_proto_wiki_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -799,7 +799,7 @@ func (x *DeleteArticleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteArticleResponse.ProtoReflect.Descriptor instead.
 func (*DeleteArticleResponse) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{13}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *DeleteArticleResponse) GetSuccess() bool {
@@ -820,7 +820,7 @@ type ListArticlesRequest struct {
 
 func (x *ListArticlesRequest) Reset() {
 	*x = ListArticlesRequest{}
-	mi := &file_wiki_proto_msgTypes[14]
+	mi := &file_api_proto_wiki_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -832,7 +832,7 @@ func (x *ListArticlesRequest) String() string {
 func (*ListArticlesRequest) ProtoMessage() {}
 
 func (x *ListArticlesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[14]
+	mi := &file_api_proto_wiki_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -845,7 +845,7 @@ func (x *ListArticlesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListArticlesRequest.ProtoReflect.Descriptor instead.
 func (*ListArticlesRequest) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{14}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ListArticlesRequest) GetLimit() int32 {
@@ -879,7 +879,7 @@ type ListArticlesResponse struct {
 
 func (x *ListArticlesResponse) Reset() {
 	*x = ListArticlesResponse{}
-	mi := &file_wiki_proto_msgTypes[15]
+	mi := &file_api_proto_wiki_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -891,7 +891,7 @@ func (x *ListArticlesResponse) String() string {
 func (*ListArticlesResponse) ProtoMessage() {}
 
 func (x *ListArticlesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[15]
+	mi := &file_api_proto_wiki_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -904,7 +904,7 @@ func (x *ListArticlesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListArticlesResponse.ProtoReflect.Descriptor instead.
 func (*ListArticlesResponse) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{15}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ListArticlesResponse) GetArticles() []*ArticleResponse {
@@ -932,7 +932,7 @@ type CreateCommentRequest struct {
 
 func (x *CreateCommentRequest) Reset() {
 	*x = CreateCommentRequest{}
-	mi := &file_wiki_proto_msgTypes[16]
+	mi := &file_api_proto_wiki_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -944,7 +944,7 @@ func (x *CreateCommentRequest) String() string {
 func (*CreateCommentRequest) ProtoMessage() {}
 
 func (x *CreateCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[16]
+	mi := &file_api_proto_wiki_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -957,7 +957,7 @@ func (x *CreateCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCommentRequest.ProtoReflect.Descriptor instead.
 func (*CreateCommentRequest) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{16}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *CreateCommentRequest) GetArticleId() string {
@@ -996,7 +996,7 @@ type CommentResponse struct {
 
 func (x *CommentResponse) Reset() {
 	*x = CommentResponse{}
-	mi := &file_wiki_proto_msgTypes[17]
+	mi := &file_api_proto_wiki_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1008,7 +1008,7 @@ func (x *CommentResponse) String() string {
 func (*CommentResponse) ProtoMessage() {}
 
 func (x *CommentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[17]
+	mi := &file_api_proto_wiki_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1021,7 +1021,7 @@ func (x *CommentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CommentResponse.ProtoReflect.Descriptor instead.
 func (*CommentResponse) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{17}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *CommentResponse) GetId() string {
@@ -1083,7 +1083,7 @@ type DeleteCommentRequest struct {
 
 func (x *DeleteCommentRequest) Reset() {
 	*x = DeleteCommentRequest{}
-	mi := &file_wiki_proto_msgTypes[18]
+	mi := &file_api_proto_wiki_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1095,7 +1095,7 @@ func (x *DeleteCommentRequest) String() string {
 func (*DeleteCommentRequest) ProtoMessage() {}
 
 func (x *DeleteCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[18]
+	mi := &file_api_proto_wiki_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1108,7 +1108,7 @@ func (x *DeleteCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCommentRequest.ProtoReflect.Descriptor instead.
 func (*DeleteCommentRequest) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{18}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *DeleteCommentRequest) GetId() string {
@@ -1134,7 +1134,7 @@ type DeleteCommentResponse struct {
 
 func (x *DeleteCommentResponse) Reset() {
 	*x = DeleteCommentResponse{}
-	mi := &file_wiki_proto_msgTypes[19]
+	mi := &file_api_proto_wiki_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1146,7 +1146,7 @@ func (x *DeleteCommentResponse) String() string {
 func (*DeleteCommentResponse) ProtoMessage() {}
 
 func (x *DeleteCommentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[19]
+	mi := &file_api_proto_wiki_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1159,7 +1159,7 @@ func (x *DeleteCommentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCommentResponse.ProtoReflect.Descriptor instead.
 func (*DeleteCommentResponse) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{19}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *DeleteCommentResponse) GetSuccess() bool {
@@ -1180,7 +1180,7 @@ type GetCommentsRequest struct {
 
 func (x *GetCommentsRequest) Reset() {
 	*x = GetCommentsRequest{}
-	mi := &file_wiki_proto_msgTypes[20]
+	mi := &file_api_proto_wiki_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1192,7 +1192,7 @@ func (x *GetCommentsRequest) String() string {
 func (*GetCommentsRequest) ProtoMessage() {}
 
 func (x *GetCommentsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[20]
+	mi := &file_api_proto_wiki_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1205,7 +1205,7 @@ func (x *GetCommentsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCommentsRequest.ProtoReflect.Descriptor instead.
 func (*GetCommentsRequest) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{20}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *GetCommentsRequest) GetArticleId() string {
@@ -1238,7 +1238,7 @@ type GetCommentsResponse struct {
 
 func (x *GetCommentsResponse) Reset() {
 	*x = GetCommentsResponse{}
-	mi := &file_wiki_proto_msgTypes[21]
+	mi := &file_api_proto_wiki_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1250,7 +1250,7 @@ func (x *GetCommentsResponse) String() string {
 func (*GetCommentsResponse) ProtoMessage() {}
 
 func (x *GetCommentsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[21]
+	mi := &file_api_proto_wiki_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1263,7 +1263,7 @@ func (x *GetCommentsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCommentsResponse.ProtoReflect.Descriptor instead.
 func (*GetCommentsResponse) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{21}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GetCommentsResponse) GetComments() []*CommentResponse {
@@ -1284,7 +1284,7 @@ type VoteCommentRequest struct {
 
 func (x *VoteCommentRequest) Reset() {
 	*x = VoteCommentRequest{}
-	mi := &file_wiki_proto_msgTypes[22]
+	mi := &file_api_proto_wiki_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1296,7 +1296,7 @@ func (x *VoteCommentRequest) String() string {
 func (*VoteCommentRequest) ProtoMessage() {}
 
 func (x *VoteCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[22]
+	mi := &file_api_proto_wiki_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1309,7 +1309,7 @@ func (x *VoteCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoteCommentRequest.ProtoReflect.Descriptor instead.
 func (*VoteCommentRequest) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{22}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *VoteCommentRequest) GetCommentId() string {
@@ -1344,7 +1344,7 @@ type VoteCommentResponse struct {
 
 func (x *VoteCommentResponse) Reset() {
 	*x = VoteCommentResponse{}
-	mi := &file_wiki_proto_msgTypes[23]
+	mi := &file_api_proto_wiki_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1356,7 +1356,7 @@ func (x *VoteCommentResponse) String() string {
 func (*VoteCommentResponse) ProtoMessage() {}
 
 func (x *VoteCommentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_wiki_proto_msgTypes[23]
+	mi := &file_api_proto_wiki_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1369,7 +1369,7 @@ func (x *VoteCommentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoteCommentResponse.ProtoReflect.Descriptor instead.
 func (*VoteCommentResponse) Descriptor() ([]byte, []int) {
-	return file_wiki_proto_rawDescGZIP(), []int{23}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *VoteCommentResponse) GetSuccess() bool {
@@ -1393,12 +1393,11 @@ func (x *VoteCommentResponse) GetDislikesCount() int32 {
 	return 0
 }
 
-var File_wiki_proto protoreflect.FileDescriptor
+var File_api_proto_wiki_proto protoreflect.FileDescriptor
 
-const file_wiki_proto_rawDesc = "" +
+const file_api_proto_wiki_proto_rawDesc = "" +
 	"\n" +
-	"\n" +
-	"wiki.proto\x12\x04wiki\"-\n" +
+	"\x14api/proto/wiki.proto\x12\x04wiki\"-\n" +
 	"\x15CreateCategoryRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\"8\n" +
 	"\x10CategoryResponse\x12\x0e\n" +
@@ -1414,7 +1413,7 @@ const file_wiki_proto_rawDesc = "" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\"D\n" +
 	"\x15UpdateCategoryRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
 	"\tnew_title\x18\x02 \x01(\tR\bnewTitle\"q\n" +
 	"\x16ListCategoriesResponse\x126\n" +
 	"\n" +
@@ -1522,20 +1521,20 @@ const file_wiki_proto_rawDesc = "" +
 	"\vVoteComment\x12\x18.wiki.VoteCommentRequest\x1a\x19.wiki.VoteCommentResponseB`Z^github.com/Gl0wdy/Typikon-backend/microservices/wiki-service/internal/transport/grpc;wiki_grpcb\x06proto3"
 
 var (
-	file_wiki_proto_rawDescOnce sync.Once
-	file_wiki_proto_rawDescData []byte
+	file_api_proto_wiki_proto_rawDescOnce sync.Once
+	file_api_proto_wiki_proto_rawDescData []byte
 )
 
-func file_wiki_proto_rawDescGZIP() []byte {
-	file_wiki_proto_rawDescOnce.Do(func() {
-		file_wiki_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_wiki_proto_rawDesc), len(file_wiki_proto_rawDesc)))
+func file_api_proto_wiki_proto_rawDescGZIP() []byte {
+	file_api_proto_wiki_proto_rawDescOnce.Do(func() {
+		file_api_proto_wiki_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_proto_wiki_proto_rawDesc), len(file_api_proto_wiki_proto_rawDesc)))
 	})
-	return file_wiki_proto_rawDescData
+	return file_api_proto_wiki_proto_rawDescData
 }
 
-var file_wiki_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_wiki_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
-var file_wiki_proto_goTypes = []any{
+var file_api_proto_wiki_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_api_proto_wiki_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_api_proto_wiki_proto_goTypes = []any{
 	(VoteType)(0),                  // 0: wiki.VoteType
 	(*CreateCategoryRequest)(nil),  // 1: wiki.CreateCategoryRequest
 	(*CategoryResponse)(nil),       // 2: wiki.CategoryResponse
@@ -1562,7 +1561,7 @@ var file_wiki_proto_goTypes = []any{
 	(*VoteCommentRequest)(nil),     // 23: wiki.VoteCommentRequest
 	(*VoteCommentResponse)(nil),    // 24: wiki.VoteCommentResponse
 }
-var file_wiki_proto_depIdxs = []int32{
+var file_api_proto_wiki_proto_depIdxs = []int32{
 	2,  // 0: wiki.ListCategoriesResponse.categories:type_name -> wiki.CategoryResponse
 	10, // 1: wiki.ListArticlesResponse.articles:type_name -> wiki.ArticleResponse
 	18, // 2: wiki.GetCommentsResponse.comments:type_name -> wiki.CommentResponse
@@ -1602,27 +1601,27 @@ var file_wiki_proto_depIdxs = []int32{
 	0,  // [0:4] is the sub-list for field type_name
 }
 
-func init() { file_wiki_proto_init() }
-func file_wiki_proto_init() {
-	if File_wiki_proto != nil {
+func init() { file_api_proto_wiki_proto_init() }
+func file_api_proto_wiki_proto_init() {
+	if File_api_proto_wiki_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_wiki_proto_rawDesc), len(file_wiki_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_proto_wiki_proto_rawDesc), len(file_api_proto_wiki_proto_rawDesc)),
 			NumEnums:      1,
 			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   3,
 		},
-		GoTypes:           file_wiki_proto_goTypes,
-		DependencyIndexes: file_wiki_proto_depIdxs,
-		EnumInfos:         file_wiki_proto_enumTypes,
-		MessageInfos:      file_wiki_proto_msgTypes,
+		GoTypes:           file_api_proto_wiki_proto_goTypes,
+		DependencyIndexes: file_api_proto_wiki_proto_depIdxs,
+		EnumInfos:         file_api_proto_wiki_proto_enumTypes,
+		MessageInfos:      file_api_proto_wiki_proto_msgTypes,
 	}.Build()
-	File_wiki_proto = out.File
-	file_wiki_proto_goTypes = nil
-	file_wiki_proto_depIdxs = nil
+	File_api_proto_wiki_proto = out.File
+	file_api_proto_wiki_proto_goTypes = nil
+	file_api_proto_wiki_proto_depIdxs = nil
 }

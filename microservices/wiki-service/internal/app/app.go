@@ -29,12 +29,17 @@ func New(port string) (*App, error) {
 		return nil, fmt.Errorf("failed to connect to db: %w", err)
 	}
 
+	categoryRepo := repository.NewPostgresCategoryRepo(db)
+	categoryUsecase := usecase.NewCategoryUseCase(categoryRepo)
+	categoriesServer := wiki_grpc.NewCategoriesServer(categoryUsecase)
+
 	articleRepo := repository.NewPostgresArticleRepo(db)
-	articleUsecase := usecase.NewArticleUseCase(articleRepo)
+	articleUsecase := usecase.NewArticleUseCase(articleRepo, categoryRepo) // передаём repo, не usecase!
 	articlesServer := wiki_grpc.NewArticlesServer(articleUsecase)
 
 	grpcServer := grpc.NewServer()
 	wiki_grpc.RegisterArticlesServiceServer(grpcServer, articlesServer)
+	wiki_grpc.RegisterCategoriesServiceServer(grpcServer, categoriesServer)
 
 	return &App{
 		grpcServer: grpcServer,
