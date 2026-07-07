@@ -1,4 +1,3 @@
-# docker-compose.yml (в корне репозитория)
 services:
   postgres:
     image: postgres:16-alpine
@@ -6,10 +5,33 @@ services:
       POSTGRES_USER: typikon
       POSTGRES_PASSWORD: typikon
       POSTGRES_DB: wiki
-    ports:
-      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  wiki-service:
+    build:
+      context: .
+      dockerfile: microservices/wiki-service/Dockerfile
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: typikon
+      DB_PASSWORD: typikon
+      DB_NAME: wiki
+
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+    depends_on:
+      - wiki-service
+
 volumes:
   pgdata:
+  caddy_data:

@@ -1,15 +1,40 @@
 syntax = "proto3";
 package wiki;
+
+import "google/api/annotations.proto";
+
 option go_package = "github.com/Gl0wdy/Typikon-backend/microservices/wiki-service/internal/transport/grpc;wiki_grpc";
 
 // ==========================================
 // Categories service
 service CategoriesService {
-    rpc CreateCategory (CreateCategoryRequest) returns (CategoryResponse);
-    rpc GetCategory (GetCategoryRequest) returns (CategoryResponse);
-    rpc UpdateCategory (UpdateCategoryRequest) returns (CategoryResponse);
-    rpc DeleteCategory (DeleteCategoryRequest) returns (DeleteCategoryResponse);
-    rpc ListCategories (ListCategoriesRequest) returns (ListCategoriesResponse);
+    rpc CreateCategory (CreateCategoryRequest) returns (CategoryResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/categories"
+            body: "*"
+        };
+    }
+    rpc GetCategory (GetCategoryRequest) returns (CategoryResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/categories/{id}"
+        };
+    }
+    rpc UpdateCategory (UpdateCategoryRequest) returns (CategoryResponse) {
+        option (google.api.http) = {
+            put: "/api/v1/categories/{id}"
+            body: "*"
+        };
+    }
+    rpc DeleteCategory (DeleteCategoryRequest) returns (DeleteCategoryResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/categories/{id}"
+        };
+    }
+    rpc ListCategories (ListCategoriesRequest) returns (ListCategoriesResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/categories"
+        };
+    }
 }
 
 message CreateCategoryRequest {
@@ -51,11 +76,33 @@ message ListCategoriesResponse {
 // ==========================================
 // Articles service
 service ArticlesService {
-    rpc CreateArticle (CreateArticleRequest) returns (ArticleResponse);
-    rpc GetArticle (GetArticleRequest) returns (ArticleResponse);
-    rpc UpdateArticle (UpdateArticleRequest) returns (ArticleResponse);
-    rpc DeleteArticle (DeleteArticleRequest) returns (DeleteArticleResponse);
-    rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse);
+    rpc CreateArticle (CreateArticleRequest) returns (ArticleResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/articles"
+            body: "*"
+        };
+    }
+    rpc GetArticle (GetArticleRequest) returns (ArticleResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/articles/{id}"
+        };
+    }
+    rpc UpdateArticle (UpdateArticleRequest) returns (ArticleResponse) {
+        option (google.api.http) = {
+            put: "/api/v1/articles/{id}"
+            body: "*"
+        };
+    }
+    rpc DeleteArticle (DeleteArticleRequest) returns (DeleteArticleResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/articles/{id}"
+        };
+    }
+    rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/articles"
+        };
+    }
 }
 
 message CreateArticleRequest {
@@ -107,10 +154,28 @@ message ListArticlesResponse {
 // ==========================================
 // Comments service
 service CommentsService {
-    rpc CreateComment (CreateCommentRequest) returns (CommentResponse);
-    rpc DeleteComment (DeleteCommentRequest) returns (DeleteCommentResponse);
-    rpc GetCommentsByArticle (GetCommentsRequest) returns (GetCommentsResponse);
-    rpc VoteComment (VoteCommentRequest) returns (VoteCommentResponse);
+    rpc CreateComment (CreateCommentRequest) returns (CommentResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/comments"
+            body: "*"
+        };
+    }
+    rpc DeleteComment (DeleteCommentRequest) returns (DeleteCommentResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/comments/{id}"
+        };
+    }
+    rpc GetCommentsByArticle (GetCommentsRequest) returns (GetCommentsResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/articles/{article_id}/comments"
+        };
+    }
+    rpc VoteComment (VoteCommentRequest) returns (VoteCommentResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/comments/{comment_id}/vote"
+            body: "*"
+        };
+    }
 }
 
 enum VoteType {

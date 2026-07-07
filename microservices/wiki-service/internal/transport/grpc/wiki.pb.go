@@ -7,6 +7,7 @@
 package wiki_grpc
 
 import (
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -1397,7 +1398,7 @@ var File_api_proto_wiki_proto protoreflect.FileDescriptor
 
 const file_api_proto_wiki_proto_rawDesc = "" +
 	"\n" +
-	"\x14api/proto/wiki.proto\x12\x04wiki\"-\n" +
+	"\x14api/proto/wiki.proto\x12\x04wiki\x1a\x1cgoogle/api/annotations.proto\"-\n" +
 	"\x15CreateCategoryRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\"8\n" +
 	"\x10CategoryResponse\x12\x0e\n" +
@@ -1500,25 +1501,25 @@ const file_api_proto_wiki_proto_rawDesc = "" +
 	"\x04LIKE\x10\x01\x12\v\n" +
 	"\aDISLIKE\x10\x02\x12\n" +
 	"\n" +
-	"\x06UNVOTE\x10\x032\xfc\x02\n" +
-	"\x11CategoriesService\x12E\n" +
-	"\x0eCreateCategory\x12\x1b.wiki.CreateCategoryRequest\x1a\x16.wiki.CategoryResponse\x12?\n" +
-	"\vGetCategory\x12\x18.wiki.GetCategoryRequest\x1a\x16.wiki.CategoryResponse\x12E\n" +
-	"\x0eUpdateCategory\x12\x1b.wiki.UpdateCategoryRequest\x1a\x16.wiki.CategoryResponse\x12K\n" +
-	"\x0eDeleteCategory\x12\x1b.wiki.DeleteCategoryRequest\x1a\x1c.wiki.DeleteCategoryResponse\x12K\n" +
-	"\x0eListCategories\x12\x1b.wiki.ListCategoriesRequest\x1a\x1c.wiki.ListCategoriesResponse2\xe8\x02\n" +
-	"\x0fArticlesService\x12B\n" +
-	"\rCreateArticle\x12\x1a.wiki.CreateArticleRequest\x1a\x15.wiki.ArticleResponse\x12<\n" +
+	"\x06UNVOTE\x10\x032\x9d\x04\n" +
+	"\x11CategoriesService\x12d\n" +
+	"\x0eCreateCategory\x12\x1b.wiki.CreateCategoryRequest\x1a\x16.wiki.CategoryResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/api/v1/categories\x12`\n" +
+	"\vGetCategory\x12\x18.wiki.GetCategoryRequest\x1a\x16.wiki.CategoryResponse\"\x1f\x82\xd3\xe4\x93\x02\x19\x12\x17/api/v1/categories/{id}\x12i\n" +
+	"\x0eUpdateCategory\x12\x1b.wiki.UpdateCategoryRequest\x1a\x16.wiki.CategoryResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\x1a\x17/api/v1/categories/{id}\x12l\n" +
+	"\x0eDeleteCategory\x12\x1b.wiki.DeleteCategoryRequest\x1a\x1c.wiki.DeleteCategoryResponse\"\x1f\x82\xd3\xe4\x93\x02\x19*\x17/api/v1/categories/{id}\x12g\n" +
+	"\x0eListCategories\x12\x1b.wiki.ListCategoriesRequest\x1a\x1c.wiki.ListCategoriesResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/v1/categories2\xff\x03\n" +
+	"\x0fArticlesService\x12_\n" +
+	"\rCreateArticle\x12\x1a.wiki.CreateArticleRequest\x1a\x15.wiki.ArticleResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/articles\x12[\n" +
 	"\n" +
-	"GetArticle\x12\x17.wiki.GetArticleRequest\x1a\x15.wiki.ArticleResponse\x12B\n" +
-	"\rUpdateArticle\x12\x1a.wiki.UpdateArticleRequest\x1a\x15.wiki.ArticleResponse\x12H\n" +
-	"\rDeleteArticle\x12\x1a.wiki.DeleteArticleRequest\x1a\x1b.wiki.DeleteArticleResponse\x12E\n" +
-	"\fListArticles\x12\x19.wiki.ListArticlesRequest\x1a\x1a.wiki.ListArticlesResponse2\xb0\x02\n" +
-	"\x0fCommentsService\x12B\n" +
-	"\rCreateComment\x12\x1a.wiki.CreateCommentRequest\x1a\x15.wiki.CommentResponse\x12H\n" +
-	"\rDeleteComment\x12\x1a.wiki.DeleteCommentRequest\x1a\x1b.wiki.DeleteCommentResponse\x12K\n" +
-	"\x14GetCommentsByArticle\x12\x18.wiki.GetCommentsRequest\x1a\x19.wiki.GetCommentsResponse\x12B\n" +
-	"\vVoteComment\x12\x18.wiki.VoteCommentRequest\x1a\x19.wiki.VoteCommentResponseB`Z^github.com/Gl0wdy/Typikon-backend/microservices/wiki-service/internal/transport/grpc;wiki_grpcb\x06proto3"
+	"GetArticle\x12\x17.wiki.GetArticleRequest\x1a\x15.wiki.ArticleResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/api/v1/articles/{id}\x12d\n" +
+	"\rUpdateArticle\x12\x1a.wiki.UpdateArticleRequest\x1a\x15.wiki.ArticleResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\x1a\x15/api/v1/articles/{id}\x12g\n" +
+	"\rDeleteArticle\x12\x1a.wiki.DeleteArticleRequest\x1a\x1b.wiki.DeleteArticleResponse\"\x1d\x82\xd3\xe4\x93\x02\x17*\x15/api/v1/articles/{id}\x12_\n" +
+	"\fListArticles\x12\x19.wiki.ListArticlesRequest\x1a\x1a.wiki.ListArticlesResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/articles2\xcb\x03\n" +
+	"\x0fCommentsService\x12_\n" +
+	"\rCreateComment\x12\x1a.wiki.CreateCommentRequest\x1a\x15.wiki.CommentResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/comments\x12g\n" +
+	"\rDeleteComment\x12\x1a.wiki.DeleteCommentRequest\x1a\x1b.wiki.DeleteCommentResponse\"\x1d\x82\xd3\xe4\x93\x02\x17*\x15/api/v1/comments/{id}\x12{\n" +
+	"\x14GetCommentsByArticle\x12\x18.wiki.GetCommentsRequest\x1a\x19.wiki.GetCommentsResponse\".\x82\xd3\xe4\x93\x02(\x12&/api/v1/articles/{article_id}/comments\x12q\n" +
+	"\vVoteComment\x12\x18.wiki.VoteCommentRequest\x1a\x19.wiki.VoteCommentResponse\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/api/v1/comments/{comment_id}/voteB`Z^github.com/Gl0wdy/Typikon-backend/microservices/wiki-service/internal/transport/grpc;wiki_grpcb\x06proto3"
 
 var (
 	file_api_proto_wiki_proto_rawDescOnce sync.Once
