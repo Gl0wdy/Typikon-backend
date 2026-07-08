@@ -126,5 +126,14 @@ func (s *CommentsServer) VoteComment(ctx context.Context, req *VoteCommentReques
 		return nil, err
 	}
 
-	return &VoteCommentResponse{Success: true}, nil
+	comment, err := s.usecase.GetByID(ctx, req.GetCommentId())
+	if err != nil {
+		return nil, err
+	}
+
+	return &VoteCommentResponse{
+		Success:       true,
+		LikesCount:    int32(comment.LikesCount),
+		DislikesCount: int32(comment.LikesCount),
+	}, nil
 }

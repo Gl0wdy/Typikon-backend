@@ -12,8 +12,8 @@ type CommentModel struct {
 	CreatedAt     time.Time `gorm:"autoCreateTime"`
 	UpdatedAt     time.Time `gorm:"autoUpdateTime"`
 	ParentID      *string   `gorm:"index;type:uuid"`
-	LikesCount    int       `db:"likes_count"`
-	DislikesCount int       `db:"dislikes_count"`
+	LikesCount    int       `gorm:"not null;default:0"`
+	DislikesCount int       `gorm:"not null;default:0"`
 
 	Replies []CommentModel `gorm:"foreignKey:ParentID"`
 }

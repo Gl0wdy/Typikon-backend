@@ -91,35 +91,76 @@ func (r *PostgresCommentRepo) Delete(ctx context.Context, id string) error {
 	return nil
 }
 
-func (r *PostgresCommentRepo) SetVote(ctx context.Context, vote *domain.CommentVote) error {
-	var existingVote models.CommentVoteModel
-	err := r.db.WithContext(ctx).Where("comment_id = ? AND user_id = ?", vote.CommentID, vote.UserID).First(&existingVote).Error
-	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
-		return err
-	}
+const (
+	voteTypeLike    = 1
+	voteTypeDislike = 2
+	voteTypeUnvote  = 3
+)
 
-	if errors.Is(err, gorm.ErrRecordNotFound) {
-		newVote := toCommentVoteModel(vote)
-		if err := r.db.WithContext(ctx).Create(newVote).Error; err != nil {
-			return err
-		}
-	} else {
-		existingVote.VoteType = vote.VoteType
-		if err := r.db.WithContext(ctx).Save(&existingVote).Error; err != nil {
-			return err
-		}
+func columnForVoteType(voteType int32) string {
+	if voteType == voteTypeDislike {
+		return "dislikes_count"
 	}
-
-	return nil
+	return "likes_count"
 }
 
-func (r *PostgresCommentRepo) DeleteVote(ctx context.Context, commentID string, userID string) error {
-	result := r.db.WithContext(ctx).Where("comment_id = ? AND user_id = ?", commentID, userID).Delete(&models.CommentVoteModel{})
-	if result.Error != nil {
-		return result.Error
-	}
-	if result.RowsAffected == 0 {
-		return domain.ErrCommentNotFound
-	}
-	return nil
+func incrementColumn(tx *gorm.DB, commentID, column string, delta int) error {
+	return tx.Model(&models.CommentModel{}).
+		Where("id = ?", commentID).
+		Update(column, gorm.Expr("GREATEST("+column+" + ?, 0)", delta)).Error
+}
+
+// TODO fix increment issues
+// i don't really know where problem is tho...
+func (r *PostgresCommentRepo) SetVote(ctx context.Context, vote *domain.CommentVote) error {
+	return r.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		var existingVote models.CommentVoteModel
+		err := tx.Where("comment_id = ? AND user_id = ?", vote.CommentID, vote.UserID).
+			First(&existingVote).Error
+		if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
+			return err
+		}
+		hasExistingVote := !errors.Is(err, gorm.ErrRecordNotFound)
+
+		if vote.VoteType == voteTypeUnvote {
+			if !hasExistingVote {
+				return nil
+			}
+			if err := tx.Delete(&existingVote).Error; err != nil {
+				return err
+			}
+			column := columnForVoteType(existingVote.VoteType)
+			return incrementColumn(tx, vote.CommentID, column, -1)
+		}
+
+		if !hasExistingVote {
+			newVote := toCommentVoteModel(vote)
+			if err := tx.Create(newVote).Error; err != nil {
+				return err
+			}
+			column := columnForVoteType(vote.VoteType)
+			return incrementColumn(tx, vote.CommentID, column, 1)
+		}
+
+		if existingVote.VoteType == vote.VoteType {
+			if err := tx.Delete(&existingVote).Error; err != nil {
+				return err
+			}
+			column := columnForVoteType(vote.VoteType)
+			return incrementColumn(tx, vote.CommentID, column, -1)
+		}
+
+		oldColumn := columnForVoteType(existingVote.VoteType)
+		newColumn := columnForVoteType(vote.VoteType)
+
+		existingVote.VoteType = vote.VoteType
+		if err := tx.Save(&existingVote).Error; err != nil {
+			return err
+		}
+
+		if err := incrementColumn(tx, vote.CommentID, oldColumn, -1); err != nil {
+			return err
+		}
+		return incrementColumn(tx, vote.CommentID, newColumn, 1)
+	})
 }

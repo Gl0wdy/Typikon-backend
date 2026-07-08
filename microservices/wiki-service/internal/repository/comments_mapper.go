@@ -25,12 +25,14 @@ func toCommentDomain(model *models.CommentModel) *domain.Comment {
 	}
 
 	res := &domain.Comment{
-		ID:        model.ID,
-		ArticleID: model.ArticleID,
-		Content:   model.Content,
-		UserID:    model.UserID,
-		ParentID:  model.ParentID,
-		CreatedAt: model.CreatedAt,
+		ID:            model.ID,
+		ArticleID:     model.ArticleID,
+		Content:       model.Content,
+		UserID:        model.UserID,
+		ParentID:      model.ParentID,
+		CreatedAt:     model.CreatedAt,
+		LikesCount:    model.LikesCount,
+		DislikesCount: model.DislikesCount,
 	}
 
 	if len(model.Replies) > 0 {

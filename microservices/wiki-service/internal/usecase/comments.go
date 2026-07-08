@@ -79,18 +79,8 @@ func (u *commentUseCase) SetVote(ctx context.Context, vote *domain.CommentVote) 
 	if _, err := u.repo.GetByID(ctx, vote.CommentID); err != nil {
 		return err
 	}
-
-	switch vote.VoteType {
-	case 0:
-		return u.repo.DeleteVote(ctx, vote.CommentID, vote.UserID)
-	case 1, 2:
-		vote := &domain.CommentVote{
-			CommentID: vote.CommentID,
-			UserID:    vote.UserID,
-			VoteType:  vote.VoteType,
-		}
-		return u.repo.SetVote(ctx, vote)
-	default:
+	if vote.VoteType < 1 || vote.VoteType > 3 {
 		return domain.ErrInvalidVoteType
 	}
+	return u.repo.SetVote(ctx, vote)
 }

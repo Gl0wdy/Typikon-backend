@@ -43,7 +43,6 @@ type CommentRepository interface {
 	Update(ctx context.Context, comment *Comment) (*Comment, error)
 	Delete(ctx context.Context, id string) error
 	SetVote(ctx context.Context, vote *CommentVote) error
-	DeleteVote(ctx context.Context, commentID string, userID string) error
 }
 
 type CommentVote struct {
