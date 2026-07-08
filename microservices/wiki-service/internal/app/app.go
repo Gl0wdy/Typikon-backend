@@ -10,6 +10,8 @@ import (
 	"github.com/Gl0wdy/Typikon-backend/microservices/wiki-service/internal/repository"
 	wiki_grpc "github.com/Gl0wdy/Typikon-backend/microservices/wiki-service/internal/transport/grpc"
 	"github.com/Gl0wdy/Typikon-backend/microservices/wiki-service/internal/usecase"
+
+	"github.com/Gl0wdy/Typikon-backend/microservices/wiki-service/internal/config"
 )
 
 type App struct {
@@ -18,12 +20,14 @@ type App struct {
 }
 
 func New(port string) (*App, error) {
+	cfg := config.LoadConfig()
+
 	db, err := repository.NewPostgresConnection(repository.DBConfig{
-		Host:     "localhost",
-		Port:     "5432",
-		User:     "typikon",
-		Password: "typikon",
-		DBName:   "wiki",
+		Host:     cfg.DB.Host,
+		Port:     cfg.DB.Port,
+		User:     cfg.DB.User,
+		Password: cfg.DB.Password,
+		DBName:   cfg.DB.DBName,
 	})
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect to db: %w", err)
@@ -34,12 +38,17 @@ func New(port string) (*App, error) {
 	categoriesServer := wiki_grpc.NewCategoriesServer(categoryUsecase)
 
 	articleRepo := repository.NewPostgresArticleRepo(db)
-	articleUsecase := usecase.NewArticleUseCase(articleRepo, categoryRepo) // передаём repo, не usecase!
+	articleUsecase := usecase.NewArticleUseCase(articleRepo, categoryRepo)
 	articlesServer := wiki_grpc.NewArticlesServer(articleUsecase)
+
+	commentRepo := repository.NewPostgresCommentRepo(db)
+	commentUsecase := usecase.NewCommentUseCase(commentRepo, articleRepo)
+	commentsServer := wiki_grpc.NewCommentsServer(commentUsecase)
 
 	grpcServer := grpc.NewServer()
 	wiki_grpc.RegisterArticlesServiceServer(grpcServer, articlesServer)
 	wiki_grpc.RegisterCategoriesServiceServer(grpcServer, categoriesServer)
+	wiki_grpc.RegisterCommentsServiceServer(grpcServer, commentsServer)
 
 	return &App{
 		grpcServer: grpcServer,

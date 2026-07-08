@@ -927,6 +927,7 @@ type CreateCommentRequest struct {
 	ArticleId     string                 `protobuf:"bytes,1,opt,name=article_id,json=articleId,proto3" json:"article_id,omitempty"`
 	Content       string                 `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
 	UserId        string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ParentId      *string                `protobuf:"bytes,4,opt,name=parent_id,json=parentId,proto3,oneof" json:"parent_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -982,6 +983,13 @@ func (x *CreateCommentRequest) GetUserId() string {
 	return ""
 }
 
+func (x *CreateCommentRequest) GetParentId() string {
+	if x != nil && x.ParentId != nil {
+		return *x.ParentId
+	}
+	return ""
+}
+
 type CommentResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -991,6 +999,8 @@ type CommentResponse struct {
 	LikesCount    int32                  `protobuf:"varint,5,opt,name=likes_count,json=likesCount,proto3" json:"likes_count,omitempty"`
 	DislikesCount int32                  `protobuf:"varint,6,opt,name=dislikes_count,json=dislikesCount,proto3" json:"dislikes_count,omitempty"`
 	CreatedAt     string                 `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	ParentId      *string                `protobuf:"bytes,8,opt,name=parent_id,json=parentId,proto3,oneof" json:"parent_id,omitempty"`
+	Replies       []*CommentResponse     `protobuf:"bytes,9,rep,name=replies,proto3" json:"replies,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1072,6 +1082,20 @@ func (x *CommentResponse) GetCreatedAt() string {
 		return x.CreatedAt
 	}
 	return ""
+}
+
+func (x *CommentResponse) GetParentId() string {
+	if x != nil && x.ParentId != nil {
+		return *x.ParentId
+	}
+	return ""
+}
+
+func (x *CommentResponse) GetReplies() []*CommentResponse {
+	if x != nil {
+		return x.Replies
+	}
+	return nil
 }
 
 type DeleteCommentRequest struct {
@@ -1170,7 +1194,103 @@ func (x *DeleteCommentResponse) GetSuccess() bool {
 	return false
 }
 
-type GetCommentsRequest struct {
+type GetCommentRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetCommentRequest) Reset() {
+	*x = GetCommentRequest{}
+	mi := &file_api_proto_wiki_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCommentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCommentRequest) ProtoMessage() {}
+
+func (x *GetCommentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_wiki_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCommentRequest.ProtoReflect.Descriptor instead.
+func (*GetCommentRequest) Descriptor() ([]byte, []int) {
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *GetCommentRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type UpdateCommentRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	NewContent    string                 `protobuf:"bytes,2,opt,name=new_content,json=newContent,proto3" json:"new_content,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateCommentRequest) Reset() {
+	*x = UpdateCommentRequest{}
+	mi := &file_api_proto_wiki_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateCommentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateCommentRequest) ProtoMessage() {}
+
+func (x *UpdateCommentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_wiki_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateCommentRequest.ProtoReflect.Descriptor instead.
+func (*UpdateCommentRequest) Descriptor() ([]byte, []int) {
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *UpdateCommentRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateCommentRequest) GetNewContent() string {
+	if x != nil {
+		return x.NewContent
+	}
+	return ""
+}
+
+type ListCommentsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ArticleId     string                 `protobuf:"bytes,1,opt,name=article_id,json=articleId,proto3" json:"article_id,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
@@ -1179,21 +1299,21 @@ type GetCommentsRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetCommentsRequest) Reset() {
-	*x = GetCommentsRequest{}
-	mi := &file_api_proto_wiki_proto_msgTypes[20]
+func (x *ListCommentsRequest) Reset() {
+	*x = ListCommentsRequest{}
+	mi := &file_api_proto_wiki_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetCommentsRequest) String() string {
+func (x *ListCommentsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetCommentsRequest) ProtoMessage() {}
+func (*ListCommentsRequest) ProtoMessage() {}
 
-func (x *GetCommentsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_wiki_proto_msgTypes[20]
+func (x *ListCommentsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_wiki_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1204,54 +1324,55 @@ func (x *GetCommentsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetCommentsRequest.ProtoReflect.Descriptor instead.
-func (*GetCommentsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_wiki_proto_rawDescGZIP(), []int{20}
+// Deprecated: Use ListCommentsRequest.ProtoReflect.Descriptor instead.
+func (*ListCommentsRequest) Descriptor() ([]byte, []int) {
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{22}
 }
 
-func (x *GetCommentsRequest) GetArticleId() string {
+func (x *ListCommentsRequest) GetArticleId() string {
 	if x != nil {
 		return x.ArticleId
 	}
 	return ""
 }
 
-func (x *GetCommentsRequest) GetLimit() int32 {
+func (x *ListCommentsRequest) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
 	return 0
 }
 
-func (x *GetCommentsRequest) GetOffset() int32 {
+func (x *ListCommentsRequest) GetOffset() int32 {
 	if x != nil {
 		return x.Offset
 	}
 	return 0
 }
 
-type GetCommentsResponse struct {
+type ListCommentsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Comments      []*CommentResponse     `protobuf:"bytes,1,rep,name=comments,proto3" json:"comments,omitempty"`
+	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetCommentsResponse) Reset() {
-	*x = GetCommentsResponse{}
-	mi := &file_api_proto_wiki_proto_msgTypes[21]
+func (x *ListCommentsResponse) Reset() {
+	*x = ListCommentsResponse{}
+	mi := &file_api_proto_wiki_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetCommentsResponse) String() string {
+func (x *ListCommentsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetCommentsResponse) ProtoMessage() {}
+func (*ListCommentsResponse) ProtoMessage() {}
 
-func (x *GetCommentsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_wiki_proto_msgTypes[21]
+func (x *ListCommentsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_wiki_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1262,16 +1383,23 @@ func (x *GetCommentsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetCommentsResponse.ProtoReflect.Descriptor instead.
-func (*GetCommentsResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_wiki_proto_rawDescGZIP(), []int{21}
+// Deprecated: Use ListCommentsResponse.ProtoReflect.Descriptor instead.
+func (*ListCommentsResponse) Descriptor() ([]byte, []int) {
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{23}
 }
 
-func (x *GetCommentsResponse) GetComments() []*CommentResponse {
+func (x *ListCommentsResponse) GetComments() []*CommentResponse {
 	if x != nil {
 		return x.Comments
 	}
 	return nil
+}
+
+func (x *ListCommentsResponse) GetTotalCount() int32 {
+	if x != nil {
+		return x.TotalCount
+	}
+	return 0
 }
 
 type VoteCommentRequest struct {
@@ -1285,7 +1413,7 @@ type VoteCommentRequest struct {
 
 func (x *VoteCommentRequest) Reset() {
 	*x = VoteCommentRequest{}
-	mi := &file_api_proto_wiki_proto_msgTypes[22]
+	mi := &file_api_proto_wiki_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1297,7 +1425,7 @@ func (x *VoteCommentRequest) String() string {
 func (*VoteCommentRequest) ProtoMessage() {}
 
 func (x *VoteCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_wiki_proto_msgTypes[22]
+	mi := &file_api_proto_wiki_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1310,7 +1438,7 @@ func (x *VoteCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoteCommentRequest.ProtoReflect.Descriptor instead.
 func (*VoteCommentRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_wiki_proto_rawDescGZIP(), []int{22}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *VoteCommentRequest) GetCommentId() string {
@@ -1345,7 +1473,7 @@ type VoteCommentResponse struct {
 
 func (x *VoteCommentResponse) Reset() {
 	*x = VoteCommentResponse{}
-	mi := &file_api_proto_wiki_proto_msgTypes[23]
+	mi := &file_api_proto_wiki_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1357,7 +1485,7 @@ func (x *VoteCommentResponse) String() string {
 func (*VoteCommentResponse) ProtoMessage() {}
 
 func (x *VoteCommentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_wiki_proto_msgTypes[23]
+	mi := &file_api_proto_wiki_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1370,7 +1498,7 @@ func (x *VoteCommentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoteCommentResponse.ProtoReflect.Descriptor instead.
 func (*VoteCommentResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_wiki_proto_rawDescGZIP(), []int{23}
+	return file_api_proto_wiki_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *VoteCommentResponse) GetSuccess() bool {
@@ -1457,12 +1585,15 @@ const file_api_proto_wiki_proto_rawDesc = "" +
 	"\x14ListArticlesResponse\x121\n" +
 	"\barticles\x18\x01 \x03(\v2\x15.wiki.ArticleResponseR\barticles\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"h\n" +
+	"totalCount\"\x98\x01\n" +
 	"\x14CreateCommentRequest\x12\x1d\n" +
 	"\n" +
 	"article_id\x18\x01 \x01(\tR\tarticleId\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\x12\x17\n" +
-	"\auser_id\x18\x03 \x01(\tR\x06userId\"\xda\x01\n" +
+	"\auser_id\x18\x03 \x01(\tR\x06userId\x12 \n" +
+	"\tparent_id\x18\x04 \x01(\tH\x00R\bparentId\x88\x01\x01B\f\n" +
+	"\n" +
+	"_parent_id\"\xbb\x02\n" +
 	"\x0fCommentResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -1473,19 +1604,31 @@ const file_api_proto_wiki_proto_rawDesc = "" +
 	"likesCount\x12%\n" +
 	"\x0edislikes_count\x18\x06 \x01(\x05R\rdislikesCount\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\a \x01(\tR\tcreatedAt\"?\n" +
+	"created_at\x18\a \x01(\tR\tcreatedAt\x12 \n" +
+	"\tparent_id\x18\b \x01(\tH\x00R\bparentId\x88\x01\x01\x12/\n" +
+	"\areplies\x18\t \x03(\v2\x15.wiki.CommentResponseR\arepliesB\f\n" +
+	"\n" +
+	"_parent_id\"?\n" +
 	"\x14DeleteCommentRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\"1\n" +
 	"\x15DeleteCommentResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"a\n" +
-	"\x12GetCommentsRequest\x12\x1d\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"#\n" +
+	"\x11GetCommentRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"G\n" +
+	"\x14UpdateCommentRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1f\n" +
+	"\vnew_content\x18\x02 \x01(\tR\n" +
+	"newContent\"b\n" +
+	"\x13ListCommentsRequest\x12\x1d\n" +
 	"\n" +
 	"article_id\x18\x01 \x01(\tR\tarticleId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"H\n" +
-	"\x13GetCommentsResponse\x121\n" +
-	"\bcomments\x18\x01 \x03(\v2\x15.wiki.CommentResponseR\bcomments\"y\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"j\n" +
+	"\x14ListCommentsResponse\x121\n" +
+	"\bcomments\x18\x01 \x03(\v2\x15.wiki.CommentResponseR\bcomments\x12\x1f\n" +
+	"\vtotal_count\x18\x02 \x01(\x05R\n" +
+	"totalCount\"y\n" +
 	"\x12VoteCommentRequest\x12\x1d\n" +
 	"\n" +
 	"comment_id\x18\x01 \x01(\tR\tcommentId\x12\x17\n" +
@@ -1514,11 +1657,14 @@ const file_api_proto_wiki_proto_rawDesc = "" +
 	"GetArticle\x12\x17.wiki.GetArticleRequest\x1a\x15.wiki.ArticleResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/api/v1/articles/{id}\x12d\n" +
 	"\rUpdateArticle\x12\x1a.wiki.UpdateArticleRequest\x1a\x15.wiki.ArticleResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\x1a\x15/api/v1/articles/{id}\x12g\n" +
 	"\rDeleteArticle\x12\x1a.wiki.DeleteArticleRequest\x1a\x1b.wiki.DeleteArticleResponse\"\x1d\x82\xd3\xe4\x93\x02\x17*\x15/api/v1/articles/{id}\x12_\n" +
-	"\fListArticles\x12\x19.wiki.ListArticlesRequest\x1a\x1a.wiki.ListArticlesResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/articles2\xcb\x03\n" +
+	"\fListArticles\x12\x19.wiki.ListArticlesRequest\x1a\x1a.wiki.ListArticlesResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/articles2\x8f\x05\n" +
 	"\x0fCommentsService\x12_\n" +
 	"\rCreateComment\x12\x1a.wiki.CreateCommentRequest\x1a\x15.wiki.CommentResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/comments\x12g\n" +
-	"\rDeleteComment\x12\x1a.wiki.DeleteCommentRequest\x1a\x1b.wiki.DeleteCommentResponse\"\x1d\x82\xd3\xe4\x93\x02\x17*\x15/api/v1/comments/{id}\x12{\n" +
-	"\x14GetCommentsByArticle\x12\x18.wiki.GetCommentsRequest\x1a\x19.wiki.GetCommentsResponse\".\x82\xd3\xe4\x93\x02(\x12&/api/v1/articles/{article_id}/comments\x12q\n" +
+	"\rDeleteComment\x12\x1a.wiki.DeleteCommentRequest\x1a\x1b.wiki.DeleteCommentResponse\"\x1d\x82\xd3\xe4\x93\x02\x17*\x15/api/v1/comments/{id}\x12u\n" +
+	"\fListComments\x12\x19.wiki.ListCommentsRequest\x1a\x1a.wiki.ListCommentsResponse\".\x82\xd3\xe4\x93\x02(\x12&/api/v1/articles/{article_id}/comments\x12[\n" +
+	"\n" +
+	"GetComment\x12\x17.wiki.GetCommentRequest\x1a\x15.wiki.CommentResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/api/v1/comments/{id}\x12k\n" +
+	"\rUpdateComment\x12\x1a.wiki.UpdateCommentRequest\x1a\x15.wiki.CommentResponse\"'\x82\xd3\xe4\x93\x02!:\x01*\x1a\x1c/api/v1/comments/{id}/update\x12q\n" +
 	"\vVoteComment\x12\x18.wiki.VoteCommentRequest\x1a\x19.wiki.VoteCommentResponse\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/api/v1/comments/{comment_id}/voteB`Z^github.com/Gl0wdy/Typikon-backend/microservices/wiki-service/internal/transport/grpc;wiki_grpcb\x06proto3"
 
 var (
@@ -1534,7 +1680,7 @@ func file_api_proto_wiki_proto_rawDescGZIP() []byte {
 }
 
 var file_api_proto_wiki_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_api_proto_wiki_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_api_proto_wiki_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
 var file_api_proto_wiki_proto_goTypes = []any{
 	(VoteType)(0),                  // 0: wiki.VoteType
 	(*CreateCategoryRequest)(nil),  // 1: wiki.CreateCategoryRequest
@@ -1557,49 +1703,56 @@ var file_api_proto_wiki_proto_goTypes = []any{
 	(*CommentResponse)(nil),        // 18: wiki.CommentResponse
 	(*DeleteCommentRequest)(nil),   // 19: wiki.DeleteCommentRequest
 	(*DeleteCommentResponse)(nil),  // 20: wiki.DeleteCommentResponse
-	(*GetCommentsRequest)(nil),     // 21: wiki.GetCommentsRequest
-	(*GetCommentsResponse)(nil),    // 22: wiki.GetCommentsResponse
-	(*VoteCommentRequest)(nil),     // 23: wiki.VoteCommentRequest
-	(*VoteCommentResponse)(nil),    // 24: wiki.VoteCommentResponse
+	(*GetCommentRequest)(nil),      // 21: wiki.GetCommentRequest
+	(*UpdateCommentRequest)(nil),   // 22: wiki.UpdateCommentRequest
+	(*ListCommentsRequest)(nil),    // 23: wiki.ListCommentsRequest
+	(*ListCommentsResponse)(nil),   // 24: wiki.ListCommentsResponse
+	(*VoteCommentRequest)(nil),     // 25: wiki.VoteCommentRequest
+	(*VoteCommentResponse)(nil),    // 26: wiki.VoteCommentResponse
 }
 var file_api_proto_wiki_proto_depIdxs = []int32{
 	2,  // 0: wiki.ListCategoriesResponse.categories:type_name -> wiki.CategoryResponse
 	10, // 1: wiki.ListArticlesResponse.articles:type_name -> wiki.ArticleResponse
-	18, // 2: wiki.GetCommentsResponse.comments:type_name -> wiki.CommentResponse
-	0,  // 3: wiki.VoteCommentRequest.vote_type:type_name -> wiki.VoteType
-	1,  // 4: wiki.CategoriesService.CreateCategory:input_type -> wiki.CreateCategoryRequest
-	3,  // 5: wiki.CategoriesService.GetCategory:input_type -> wiki.GetCategoryRequest
-	7,  // 6: wiki.CategoriesService.UpdateCategory:input_type -> wiki.UpdateCategoryRequest
-	4,  // 7: wiki.CategoriesService.DeleteCategory:input_type -> wiki.DeleteCategoryRequest
-	6,  // 8: wiki.CategoriesService.ListCategories:input_type -> wiki.ListCategoriesRequest
-	9,  // 9: wiki.ArticlesService.CreateArticle:input_type -> wiki.CreateArticleRequest
-	11, // 10: wiki.ArticlesService.GetArticle:input_type -> wiki.GetArticleRequest
-	12, // 11: wiki.ArticlesService.UpdateArticle:input_type -> wiki.UpdateArticleRequest
-	13, // 12: wiki.ArticlesService.DeleteArticle:input_type -> wiki.DeleteArticleRequest
-	15, // 13: wiki.ArticlesService.ListArticles:input_type -> wiki.ListArticlesRequest
-	17, // 14: wiki.CommentsService.CreateComment:input_type -> wiki.CreateCommentRequest
-	19, // 15: wiki.CommentsService.DeleteComment:input_type -> wiki.DeleteCommentRequest
-	21, // 16: wiki.CommentsService.GetCommentsByArticle:input_type -> wiki.GetCommentsRequest
-	23, // 17: wiki.CommentsService.VoteComment:input_type -> wiki.VoteCommentRequest
-	2,  // 18: wiki.CategoriesService.CreateCategory:output_type -> wiki.CategoryResponse
-	2,  // 19: wiki.CategoriesService.GetCategory:output_type -> wiki.CategoryResponse
-	2,  // 20: wiki.CategoriesService.UpdateCategory:output_type -> wiki.CategoryResponse
-	5,  // 21: wiki.CategoriesService.DeleteCategory:output_type -> wiki.DeleteCategoryResponse
-	8,  // 22: wiki.CategoriesService.ListCategories:output_type -> wiki.ListCategoriesResponse
-	10, // 23: wiki.ArticlesService.CreateArticle:output_type -> wiki.ArticleResponse
-	10, // 24: wiki.ArticlesService.GetArticle:output_type -> wiki.ArticleResponse
-	10, // 25: wiki.ArticlesService.UpdateArticle:output_type -> wiki.ArticleResponse
-	14, // 26: wiki.ArticlesService.DeleteArticle:output_type -> wiki.DeleteArticleResponse
-	16, // 27: wiki.ArticlesService.ListArticles:output_type -> wiki.ListArticlesResponse
-	18, // 28: wiki.CommentsService.CreateComment:output_type -> wiki.CommentResponse
-	20, // 29: wiki.CommentsService.DeleteComment:output_type -> wiki.DeleteCommentResponse
-	22, // 30: wiki.CommentsService.GetCommentsByArticle:output_type -> wiki.GetCommentsResponse
-	24, // 31: wiki.CommentsService.VoteComment:output_type -> wiki.VoteCommentResponse
-	18, // [18:32] is the sub-list for method output_type
-	4,  // [4:18] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	18, // 2: wiki.CommentResponse.replies:type_name -> wiki.CommentResponse
+	18, // 3: wiki.ListCommentsResponse.comments:type_name -> wiki.CommentResponse
+	0,  // 4: wiki.VoteCommentRequest.vote_type:type_name -> wiki.VoteType
+	1,  // 5: wiki.CategoriesService.CreateCategory:input_type -> wiki.CreateCategoryRequest
+	3,  // 6: wiki.CategoriesService.GetCategory:input_type -> wiki.GetCategoryRequest
+	7,  // 7: wiki.CategoriesService.UpdateCategory:input_type -> wiki.UpdateCategoryRequest
+	4,  // 8: wiki.CategoriesService.DeleteCategory:input_type -> wiki.DeleteCategoryRequest
+	6,  // 9: wiki.CategoriesService.ListCategories:input_type -> wiki.ListCategoriesRequest
+	9,  // 10: wiki.ArticlesService.CreateArticle:input_type -> wiki.CreateArticleRequest
+	11, // 11: wiki.ArticlesService.GetArticle:input_type -> wiki.GetArticleRequest
+	12, // 12: wiki.ArticlesService.UpdateArticle:input_type -> wiki.UpdateArticleRequest
+	13, // 13: wiki.ArticlesService.DeleteArticle:input_type -> wiki.DeleteArticleRequest
+	15, // 14: wiki.ArticlesService.ListArticles:input_type -> wiki.ListArticlesRequest
+	17, // 15: wiki.CommentsService.CreateComment:input_type -> wiki.CreateCommentRequest
+	19, // 16: wiki.CommentsService.DeleteComment:input_type -> wiki.DeleteCommentRequest
+	23, // 17: wiki.CommentsService.ListComments:input_type -> wiki.ListCommentsRequest
+	21, // 18: wiki.CommentsService.GetComment:input_type -> wiki.GetCommentRequest
+	22, // 19: wiki.CommentsService.UpdateComment:input_type -> wiki.UpdateCommentRequest
+	25, // 20: wiki.CommentsService.VoteComment:input_type -> wiki.VoteCommentRequest
+	2,  // 21: wiki.CategoriesService.CreateCategory:output_type -> wiki.CategoryResponse
+	2,  // 22: wiki.CategoriesService.GetCategory:output_type -> wiki.CategoryResponse
+	2,  // 23: wiki.CategoriesService.UpdateCategory:output_type -> wiki.CategoryResponse
+	5,  // 24: wiki.CategoriesService.DeleteCategory:output_type -> wiki.DeleteCategoryResponse
+	8,  // 25: wiki.CategoriesService.ListCategories:output_type -> wiki.ListCategoriesResponse
+	10, // 26: wiki.ArticlesService.CreateArticle:output_type -> wiki.ArticleResponse
+	10, // 27: wiki.ArticlesService.GetArticle:output_type -> wiki.ArticleResponse
+	10, // 28: wiki.ArticlesService.UpdateArticle:output_type -> wiki.ArticleResponse
+	14, // 29: wiki.ArticlesService.DeleteArticle:output_type -> wiki.DeleteArticleResponse
+	16, // 30: wiki.ArticlesService.ListArticles:output_type -> wiki.ListArticlesResponse
+	18, // 31: wiki.CommentsService.CreateComment:output_type -> wiki.CommentResponse
+	20, // 32: wiki.CommentsService.DeleteComment:output_type -> wiki.DeleteCommentResponse
+	24, // 33: wiki.CommentsService.ListComments:output_type -> wiki.ListCommentsResponse
+	18, // 34: wiki.CommentsService.GetComment:output_type -> wiki.CommentResponse
+	18, // 35: wiki.CommentsService.UpdateComment:output_type -> wiki.CommentResponse
+	26, // 36: wiki.CommentsService.VoteComment:output_type -> wiki.VoteCommentResponse
+	21, // [21:37] is the sub-list for method output_type
+	5,  // [5:21] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_api_proto_wiki_proto_init() }
@@ -1607,13 +1760,15 @@ func file_api_proto_wiki_proto_init() {
 	if File_api_proto_wiki_proto != nil {
 		return
 	}
+	file_api_proto_wiki_proto_msgTypes[16].OneofWrappers = []any{}
+	file_api_proto_wiki_proto_msgTypes[17].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_proto_wiki_proto_rawDesc), len(file_api_proto_wiki_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   24,
+			NumMessages:   26,
 			NumExtensions: 0,
 			NumServices:   3,
 		},

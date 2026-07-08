@@ -63,6 +63,13 @@ func (r *PostgresCategoryRepo) Delete(ctx context.Context, id string) error {
 }
 
 func (r *PostgresCategoryRepo) List(ctx context.Context, limit, offset int) ([]*domain.Category, error) {
+	if limit <= 0 {
+		limit = 10
+	}
+	if limit > 100 {
+		limit = 100
+	}
+
 	var dbModels []models.CategoryModel
 	if err := r.db.WithContext(ctx).Limit(limit).Offset(offset).Find(&dbModels).Error; err != nil {
 		return nil, err

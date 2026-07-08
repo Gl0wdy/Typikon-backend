@@ -14,17 +14,13 @@ type ArticleUseCase interface {
 	List(ctx context.Context, limit, offset int) ([]*domain.Article, error)
 }
 
-type CategoryChecker interface {
-	Exists(ctx context.Context, categoryID string) (bool, error)
-}
-
 type articleUseCase struct {
-	repo            domain.ArticleRepository
-	categoryChecker CategoryChecker
+	repo         domain.ArticleRepository
+	categoryRepo domain.CategoryRepository
 }
 
-func NewArticleUseCase(repo domain.ArticleRepository, categoryChecker CategoryChecker) ArticleUseCase {
-	return &articleUseCase{repo: repo, categoryChecker: categoryChecker}
+func NewArticleUseCase(repo domain.ArticleRepository, categoryRepo domain.CategoryRepository) ArticleUseCase {
+	return &articleUseCase{repo: repo, categoryRepo: categoryRepo}
 }
 
 func (u *articleUseCase) Create(ctx context.Context, article *domain.Article) (*domain.Article, error) {
@@ -32,15 +28,14 @@ func (u *articleUseCase) Create(ctx context.Context, article *domain.Article) (*
 		return nil, err
 	}
 
-	if _, err := u.categoryChecker.Exists(ctx, article.CategoryID); err != nil {
-		return nil, domain.CategoryNotFound
+	if _, err := u.categoryRepo.GetByID(ctx, article.CategoryID); err != nil {
+		return nil, err
 	}
 
 	createdArticle, err := u.repo.Create(ctx, article)
 	if err != nil {
 		return nil, err
 	}
-
 	return createdArticle, nil
 }
 
@@ -49,7 +44,6 @@ func (u *articleUseCase) GetByID(ctx context.Context, id string) (*domain.Articl
 	if err != nil {
 		return nil, err
 	}
-
 	return article, nil
 }
 
@@ -68,8 +62,7 @@ func (u *articleUseCase) Update(ctx context.Context, article *domain.Article) er
 }
 
 func (u *articleUseCase) Delete(ctx context.Context, id string) error {
-	_, err := u.repo.GetByID(ctx, id)
-	if err != nil {
+	if _, err := u.repo.GetByID(ctx, id); err != nil {
 		return err
 	}
 	return u.repo.Delete(ctx, id)

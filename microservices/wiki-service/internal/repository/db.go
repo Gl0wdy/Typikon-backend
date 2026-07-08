@@ -31,6 +31,8 @@ func NewPostgresConnection(cfg DBConfig) (*gorm.DB, error) {
 	if err := db.AutoMigrate(
 		&models.ArticleModel{},
 		&models.CategoryModel{},
+		&models.CommentModel{},
+		&models.CommentVoteModel{},
 	); err != nil {
 		return nil, fmt.Errorf("failed to auto-migrate: %w", err)
 	}

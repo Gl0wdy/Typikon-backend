@@ -20,17 +20,20 @@ services:
       DB_USER: typikon
       DB_PASSWORD: typikon
       DB_NAME: wiki
-
-  caddy:
-    image: caddy:2-alpine
     ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-    depends_on:
-      - wiki-service
+      - "8080:8080"  
+      - "50051:50051"
+
+  # caddy:
+  #   image: caddy:2-alpine
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./Caddyfile:/etc/caddy/Caddyfile
+  #     - caddy_data:/data
+  #   depends_on:
+  #     - wiki-service
 
 volumes:
   pgdata:

@@ -1,0 +1,6 @@
+.git
+.gitignore
+third_party/
+*.md
+.vscode/
+node_modules/

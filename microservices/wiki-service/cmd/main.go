@@ -5,17 +5,17 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-
-	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 
 	"github.com/Gl0wdy/Typikon-backend/microservices/wiki-service/internal/app"
 	wiki_grpc "github.com/Gl0wdy/Typikon-backend/microservices/wiki-service/internal/transport/grpc"
 )
 
 func main() {
-	application, err := app.New("50051")
+	grpcPort := "50051"
+	application, err := app.New(grpcPort)
 	if err != nil {
 		log.Fatalf("failed to create app: %v", err)
 	}
@@ -31,11 +31,18 @@ func main() {
 
 	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
 
-	if err := wiki_grpc.RegisterArticlesServiceHandlerFromEndpoint(ctx, mux, "localhost:50051", opts); err != nil {
+	grpcEndpoint := "127.0.0.1:" + grpcPort
+
+	if err := wiki_grpc.RegisterArticlesServiceHandlerFromEndpoint(ctx, mux, grpcEndpoint, opts); err != nil {
 		log.Fatalf("failed to register articles gateway: %v", err)
 	}
-	if err := wiki_grpc.RegisterCategoriesServiceHandlerFromEndpoint(ctx, mux, "localhost:50051", opts); err != nil {
+
+	if err := wiki_grpc.RegisterCategoriesServiceHandlerFromEndpoint(ctx, mux, grpcEndpoint, opts); err != nil {
 		log.Fatalf("failed to register categories gateway: %v", err)
+	}
+
+	if err := wiki_grpc.RegisterCommentsServiceHandlerFromEndpoint(ctx, mux, grpcEndpoint, opts); err != nil {
+		log.Fatalf("failed to register comments gateway: %v", err)
 	}
 
 	log.Println("HTTP gateway listening on :8080")

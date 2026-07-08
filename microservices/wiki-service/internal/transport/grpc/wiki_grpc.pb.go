@@ -539,10 +539,12 @@ var ArticlesService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	CommentsService_CreateComment_FullMethodName        = "/wiki.CommentsService/CreateComment"
-	CommentsService_DeleteComment_FullMethodName        = "/wiki.CommentsService/DeleteComment"
-	CommentsService_GetCommentsByArticle_FullMethodName = "/wiki.CommentsService/GetCommentsByArticle"
-	CommentsService_VoteComment_FullMethodName          = "/wiki.CommentsService/VoteComment"
+	CommentsService_CreateComment_FullMethodName = "/wiki.CommentsService/CreateComment"
+	CommentsService_DeleteComment_FullMethodName = "/wiki.CommentsService/DeleteComment"
+	CommentsService_ListComments_FullMethodName  = "/wiki.CommentsService/ListComments"
+	CommentsService_GetComment_FullMethodName    = "/wiki.CommentsService/GetComment"
+	CommentsService_UpdateComment_FullMethodName = "/wiki.CommentsService/UpdateComment"
+	CommentsService_VoteComment_FullMethodName   = "/wiki.CommentsService/VoteComment"
 )
 
 // CommentsServiceClient is the client API for CommentsService service.
@@ -554,7 +556,9 @@ const (
 type CommentsServiceClient interface {
 	CreateComment(ctx context.Context, in *CreateCommentRequest, opts ...grpc.CallOption) (*CommentResponse, error)
 	DeleteComment(ctx context.Context, in *DeleteCommentRequest, opts ...grpc.CallOption) (*DeleteCommentResponse, error)
-	GetCommentsByArticle(ctx context.Context, in *GetCommentsRequest, opts ...grpc.CallOption) (*GetCommentsResponse, error)
+	ListComments(ctx context.Context, in *ListCommentsRequest, opts ...grpc.CallOption) (*ListCommentsResponse, error)
+	GetComment(ctx context.Context, in *GetCommentRequest, opts ...grpc.CallOption) (*CommentResponse, error)
+	UpdateComment(ctx context.Context, in *UpdateCommentRequest, opts ...grpc.CallOption) (*CommentResponse, error)
 	VoteComment(ctx context.Context, in *VoteCommentRequest, opts ...grpc.CallOption) (*VoteCommentResponse, error)
 }
 
@@ -586,10 +590,30 @@ func (c *commentsServiceClient) DeleteComment(ctx context.Context, in *DeleteCom
 	return out, nil
 }
 
-func (c *commentsServiceClient) GetCommentsByArticle(ctx context.Context, in *GetCommentsRequest, opts ...grpc.CallOption) (*GetCommentsResponse, error) {
+func (c *commentsServiceClient) ListComments(ctx context.Context, in *ListCommentsRequest, opts ...grpc.CallOption) (*ListCommentsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCommentsResponse)
-	err := c.cc.Invoke(ctx, CommentsService_GetCommentsByArticle_FullMethodName, in, out, cOpts...)
+	out := new(ListCommentsResponse)
+	err := c.cc.Invoke(ctx, CommentsService_ListComments_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *commentsServiceClient) GetComment(ctx context.Context, in *GetCommentRequest, opts ...grpc.CallOption) (*CommentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CommentResponse)
+	err := c.cc.Invoke(ctx, CommentsService_GetComment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *commentsServiceClient) UpdateComment(ctx context.Context, in *UpdateCommentRequest, opts ...grpc.CallOption) (*CommentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CommentResponse)
+	err := c.cc.Invoke(ctx, CommentsService_UpdateComment_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -615,7 +639,9 @@ func (c *commentsServiceClient) VoteComment(ctx context.Context, in *VoteComment
 type CommentsServiceServer interface {
 	CreateComment(context.Context, *CreateCommentRequest) (*CommentResponse, error)
 	DeleteComment(context.Context, *DeleteCommentRequest) (*DeleteCommentResponse, error)
-	GetCommentsByArticle(context.Context, *GetCommentsRequest) (*GetCommentsResponse, error)
+	ListComments(context.Context, *ListCommentsRequest) (*ListCommentsResponse, error)
+	GetComment(context.Context, *GetCommentRequest) (*CommentResponse, error)
+	UpdateComment(context.Context, *UpdateCommentRequest) (*CommentResponse, error)
 	VoteComment(context.Context, *VoteCommentRequest) (*VoteCommentResponse, error)
 	mustEmbedUnimplementedCommentsServiceServer()
 }
@@ -633,8 +659,14 @@ func (UnimplementedCommentsServiceServer) CreateComment(context.Context, *Create
 func (UnimplementedCommentsServiceServer) DeleteComment(context.Context, *DeleteCommentRequest) (*DeleteCommentResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteComment not implemented")
 }
-func (UnimplementedCommentsServiceServer) GetCommentsByArticle(context.Context, *GetCommentsRequest) (*GetCommentsResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetCommentsByArticle not implemented")
+func (UnimplementedCommentsServiceServer) ListComments(context.Context, *ListCommentsRequest) (*ListCommentsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListComments not implemented")
+}
+func (UnimplementedCommentsServiceServer) GetComment(context.Context, *GetCommentRequest) (*CommentResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetComment not implemented")
+}
+func (UnimplementedCommentsServiceServer) UpdateComment(context.Context, *UpdateCommentRequest) (*CommentResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateComment not implemented")
 }
 func (UnimplementedCommentsServiceServer) VoteComment(context.Context, *VoteCommentRequest) (*VoteCommentResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method VoteComment not implemented")
@@ -696,20 +728,56 @@ func _CommentsService_DeleteComment_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CommentsService_GetCommentsByArticle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCommentsRequest)
+func _CommentsService_ListComments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCommentsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CommentsServiceServer).GetCommentsByArticle(ctx, in)
+		return srv.(CommentsServiceServer).ListComments(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: CommentsService_GetCommentsByArticle_FullMethodName,
+		FullMethod: CommentsService_ListComments_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CommentsServiceServer).GetCommentsByArticle(ctx, req.(*GetCommentsRequest))
+		return srv.(CommentsServiceServer).ListComments(ctx, req.(*ListCommentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CommentsService_GetComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCommentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CommentsServiceServer).GetComment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CommentsService_GetComment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CommentsServiceServer).GetComment(ctx, req.(*GetCommentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CommentsService_UpdateComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateCommentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CommentsServiceServer).UpdateComment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CommentsService_UpdateComment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CommentsServiceServer).UpdateComment(ctx, req.(*UpdateCommentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -748,8 +816,16 @@ var CommentsService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CommentsService_DeleteComment_Handler,
 		},
 		{
-			MethodName: "GetCommentsByArticle",
-			Handler:    _CommentsService_GetCommentsByArticle_Handler,
+			MethodName: "ListComments",
+			Handler:    _CommentsService_ListComments_Handler,
+		},
+		{
+			MethodName: "GetComment",
+			Handler:    _CommentsService_GetComment_Handler,
+		},
+		{
+			MethodName: "UpdateComment",
+			Handler:    _CommentsService_UpdateComment_Handler,
 		},
 		{
 			MethodName: "VoteComment",

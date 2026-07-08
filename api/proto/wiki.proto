@@ -165,9 +165,20 @@ service CommentsService {
             delete: "/api/v1/comments/{id}"
         };
     }
-    rpc GetCommentsByArticle (GetCommentsRequest) returns (GetCommentsResponse) {
+    rpc ListComments (ListCommentsRequest) returns (ListCommentsResponse) {
         option (google.api.http) = {
             get: "/api/v1/articles/{article_id}/comments"
+        };
+    }
+    rpc GetComment (GetCommentRequest) returns (CommentResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/comments/{id}"
+        };
+    }
+    rpc UpdateComment (UpdateCommentRequest) returns (CommentResponse) {
+        option (google.api.http) = {
+            put: "/api/v1/comments/{id}/update"
+            body: "*"
         };
     }
     rpc VoteComment (VoteCommentRequest) returns (VoteCommentResponse) {
@@ -189,6 +200,7 @@ message CreateCommentRequest {
     string article_id = 1;
     string content = 2;
     string user_id = 3;
+    optional string parent_id = 4;
 }
 
 message CommentResponse {
@@ -199,6 +211,8 @@ message CommentResponse {
     int32 likes_count = 5;
     int32 dislikes_count = 6;
     string created_at = 7;
+    optional string parent_id = 8;
+    repeated CommentResponse replies = 9;
 }
 
 message DeleteCommentRequest {
@@ -210,14 +224,24 @@ message DeleteCommentResponse {
     bool success = 1;
 }
 
-message GetCommentsRequest {
+message GetCommentRequest {
+    string id = 1;
+}
+
+message UpdateCommentRequest {
+    string id = 1;
+    string new_content = 2;
+}
+
+message ListCommentsRequest {
     string article_id = 1;
     int32 limit = 2;
     int32 offset = 3;
 }
 
-message GetCommentsResponse {
+message ListCommentsResponse {
     repeated CommentResponse comments = 1;
+    int32 total_count = 2;
 }
 
 message VoteCommentRequest {

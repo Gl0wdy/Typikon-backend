@@ -67,6 +67,13 @@ func (r *PostgresArticleRepo) Delete(ctx context.Context, id string) error {
 }
 
 func (r *PostgresArticleRepo) List(ctx context.Context, limit, offset int) ([]*domain.Article, error) {
+	if limit <= 0 {
+		limit = 10
+	}
+	if limit > 100 {
+		limit = 100
+	}
+
 	var dbModels []models.ArticleModel
 
 	if err := r.db.WithContext(ctx).

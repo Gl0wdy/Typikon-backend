@@ -1,9 +1,12 @@
-FROM golang:1.23-alpine AS builder
+FROM golang:1.26-alpine AS builder
 
 WORKDIR /app
-COPY go.work go.work.sum ./
 COPY microservices/wiki-service ./microservices/wiki-service
-RUN go build -o /wiki-service ./microservices/wiki-service/cmd/main.go
+
+WORKDIR /app/microservices/wiki-service
+ENV GOFLAGS=-mod=mod
+ENV GOWORK=off
+RUN go build -o /wiki-service ./cmd/main.go
 
 FROM alpine:latest
 COPY --from=builder /wiki-service /wiki-service
