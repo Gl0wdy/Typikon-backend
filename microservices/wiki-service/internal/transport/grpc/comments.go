@@ -134,6 +134,6 @@ func (s *CommentsServer) VoteComment(ctx context.Context, req *VoteCommentReques
 	return &VoteCommentResponse{
 		Success:       true,
 		LikesCount:    int32(comment.LikesCount),
-		DislikesCount: int32(comment.LikesCount),
+		DislikesCount: int32(comment.DislikesCount),
 	}, nil
 }

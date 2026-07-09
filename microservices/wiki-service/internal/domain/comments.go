@@ -23,7 +23,7 @@ var (
 	ErrInvalidCommentContent = errors.New("invalid comment content: cannot be empty")
 	ErrCommentNotFound       = errors.New("comment not found")
 	ErrCommentContentTooLong = errors.New("invalid comment content: too long")
-	ErrInvalidVoteType       = errors.New("invalid vote type: must be 0 (remove), 1 (like), or 2 (dislike)")
+	ErrInvalidVoteType       = errors.New("invalid vote type:1 (like), 2 (dislike) or 3 (remove)")
 )
 
 func (c *Comment) Validate() error {
